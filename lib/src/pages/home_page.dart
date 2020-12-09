@@ -22,7 +22,6 @@ class HomePage extends StatelessWidget {
             ),
             DucerTextField(
               controller: TextEditingController(),
-              focusNode: FocusNode(),
               labelText: 'Email',
               obscureText: false,
               onChanged: (value) => { print(value) },
@@ -30,7 +29,6 @@ class HomePage extends StatelessWidget {
             ),
             DucerTextField(
               controller: TextEditingController(),
-              focusNode: FocusNode(),
               labelText: 'Password',
               obscureText: true,
               onChanged: (value) => { print(value) },

@@ -1,18 +1,18 @@
 import 'package:get/state_manager.dart';
 import 'package:get/route_manager.dart';
 
-import 'package:ducer/src/pages/home_page.dart';
+import 'package:ducer/src/pages/login_page.dart';
 
 class SplashScreenController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    this.goToHomePage();
+    this.goToLoginPage();
   }
 
-  void goToHomePage() {
+  void goToLoginPage() {
     Future.delayed(Duration(seconds: 2), () {
-      Get.off(HomePage(), transition: Transition.cupertino);
+      Get.off(LoginPage(), transition: Transition.cupertino);
     });
   }
 }

@@ -28,4 +28,28 @@ class Helpers {
       )
     );
   }
+
+  static void openSnackBar(String errorTitle, errorBody) {
+    Get.snackbar(
+      '',
+      '',
+      titleText: Text(
+        errorTitle,
+        style: TextStyle(
+          fontFamily: 'Baloo',
+          color: Color(0xFF275850),
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+      messageText: Text(
+        errorBody,
+        style: TextStyle(
+          fontFamily: 'Baloo',
+          color: Colors.black,
+        ),
+      ),
+      backgroundColor: Colors.grey.withOpacity(0.4),
+      animationDuration: Duration(seconds: 5)
+    );
+  }
 }

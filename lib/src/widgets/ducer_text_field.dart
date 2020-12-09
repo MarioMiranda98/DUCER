@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DucerTextField extends StatelessWidget {
-  final FocusNode focusNode;
   final TextEditingController controller;
   final void Function(String) onChanged;
   final bool obscureText;
@@ -10,7 +9,6 @@ class DucerTextField extends StatelessWidget {
   final TextInputType textInputType;
 
   DucerTextField({
-    this.focusNode,
     this.controller,
     this.onChanged,
     this.obscureText = false,
@@ -24,7 +22,6 @@ class DucerTextField extends StatelessWidget {
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 20),
       child: TextField(
-        focusNode: this.focusNode,
         controller: this.controller,
         onChanged: this.onChanged,
         obscureText: this.obscureText,
