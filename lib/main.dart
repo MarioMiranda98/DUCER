@@ -14,6 +14,7 @@ void main() {
       theme: ThemeData(
         fontFamily: 'Hammersmith',
         primaryColor: Color(0xFF275850),
+        accentColor: Color(0xFF1A99FA)
       ),
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [

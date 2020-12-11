@@ -8,11 +8,13 @@ class DucerButton extends StatelessWidget {
   final double width;
   final Color colorText;
   final Color colorButton;
+  final double fontSize;
 
   DucerButton({
     this.text = 'default text',
     this.margin = 20.0,
     this.padding = 20.0,
+    this.fontSize = 16.0,
     this.width,
     this.colorText,
     this.colorButton,
@@ -28,7 +30,7 @@ class DucerButton extends StatelessWidget {
       child: Container(
         child: Text(this.text,
           style: TextStyle(
-            fontSize: 16,
+            fontSize: fontSize,
             fontFamily: 'Baloo',
             color: colorText,
             fontWeight: FontWeight.w500

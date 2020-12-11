@@ -1,92 +1,79 @@
+import 'package:ducer/src/pages/login_page.dart';
+import 'package:ducer/src/widgets/ducer_button.dart';
 import 'package:flutter/material.dart';
-import 'package:custom_switch/custom_switch.dart';
+import 'package:get/get.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:ducer/src/widgets/ducer_app_bar.dart';
-import 'package:ducer/src/widgets/ducer_header.dart';
-import 'package:ducer/src/widgets/ducer_button.dart';
-import 'package:ducer/src/widgets/ducer_text_field.dart';
-import 'package:ducer/src/utils/helpers.dart';
-import 'package:ducer/src/widgets/behavior_chart.dart';
+import 'package:ducer/src/widgets/ducer_card.dart';
 
 class HomePage extends StatelessWidget {
+  final item = DucerCard(
+    titleCard: 'Hola mundo',
+    bodyCard: 'Esse reprehenderit commodo laborum ipsum laboris ea ut incididunt. Magna tempor duis cupidatat consectetur occaecat reprehenderit ea nostrud ex.',
+    buttonText: 'Ir',
+    action: () => print('hola'),
+  );
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: DucerAppBar(),
-      body: SafeArea(
-        child: ListView(
+    return SafeArea(
+      child: Scaffold(
+        appBar: DucerAppBar(),
+        body: Column(
           children: <Widget>[
-            DucerHeader(
-              childName: 'Pedrito Lopez',
-              screenName: 'Registrar Conducta'
-            ),
-            DucerTextField(
-              controller: TextEditingController(),
-              labelText: 'Email',
-              obscureText: false,
-              onChanged: (value) => { print(value) },
-              textInputType: TextInputType.emailAddress,
-            ),
-            DucerTextField(
-              controller: TextEditingController(),
-              labelText: 'Password',
-              obscureText: true,
-              onChanged: (value) => { print(value) },
-              textInputType: TextInputType.text,
-            ),
-            SizedBox(height: 10),
-            DucerButton(
-              action: () => print('hello'),
-              colorButton: Color(0xFF275850),
-              colorText: Colors.white,
-              margin: 15.0,
-              padding: 20.0,
-              text: 'Log in',
-              width: 100.0,
-            ),
-            SizedBox(height: 10),
-            DucerButton(
-              action: () async => print(await Helpers.buildDatePicker()),
-              colorButton: Color(0xFF275850),
-              colorText: Colors.white,
-              margin: 15.0,
-              padding: 20.0,
-              text: 'Date Picker',
-              width: 100.0,
-            ),
-            SizedBox(height: 10),
             Container(
-              height: 300,
-              child: BehaviorChart(),
+              padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: Get.width * 0.35),
+              child: Text(
+                'Bienvenido',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  fontFamily: 'Baloo'
+                ),
+              )
             ),
-            Container(
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text('Y -> No. Incidencias'),
-                  Text('X -> Días')
-                ]
+            Divider(),
+            _buildCarousel(),
+            Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: DucerButton(
+                colorButton: Theme.of(Get.context).primaryColor,
+                colorText: Colors.white,
+                text: 'Cerrar Sesión',
+                width: 200.0,
+                fontSize: 24,
+                action: () => { Get.off(LoginPage()) },
               ),
             ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text('Switch'),
-                  CustomSwitch(
-                    activeColor: Colors.green[300],
-                    value: true,
-                    onChanged: (value) {
-                      print(value);
-                    }
-                  ),
-                ]
-              ),
-            )
           ],
-        ),
+        )
+      ),
+    );
+  }
+
+  Widget _buildCarousel() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: Get.height * 0.01),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          CarouselSlider(
+            options: CarouselOptions(
+              initialPage: 0,
+              autoPlay: false,
+              aspectRatio: 1.0,
+            ),
+            items: [
+              item,
+              item,
+              item,
+              item,
+              item,
+              item,
+            ],
+          ),
+        ],
       ),
     );
   }
