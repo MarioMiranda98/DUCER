@@ -1,6 +1,7 @@
 enum PasswordErrors {
   EMPTY_PASSWORD,
-  PASSWORD_LENGTH
+  PASSWORD_LENGTH,
+  PASSWORDS_DO_NOT_MATCH,
 }
 
 extension PasswordErrorsExtension on PasswordErrors {
@@ -11,6 +12,9 @@ extension PasswordErrorsExtension on PasswordErrors {
         break;
       case PasswordErrors.PASSWORD_LENGTH:
         return 'La contraseña debe tener minimo 6 caracteres';
+        break;
+      case PasswordErrors.PASSWORDS_DO_NOT_MATCH:
+        return 'Las contraseñas no coinciden';
         break;
       default:
         return '';

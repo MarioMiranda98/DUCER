@@ -38,7 +38,7 @@ class DucerButton extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(1)),
+          borderRadius: BorderRadius.all(Radius.circular(5)),
           color: colorButton.withOpacity(1),
         ),
 

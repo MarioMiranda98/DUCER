@@ -15,8 +15,8 @@ class Helpers {
     return await showRoundedDatePicker(
       context: Get.context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(DateTime.now().year - 1),
-      lastDate: DateTime(DateTime.now().year + 1),
+      firstDate: DateTime(DateTime.now().year - 10000),
+      lastDate: DateTime(DateTime.now().year + 10000),
       borderRadius: 16,
       theme: ThemeData(
         primaryColor: Theme.of(Get.context).primaryColor,
@@ -29,7 +29,7 @@ class Helpers {
     );
   }
 
-  static void openSnackBar(String errorTitle, errorBody) {
+  static void openSnackBar(String errorTitle, String errorBody) {
     Get.snackbar(
       '',
       '',

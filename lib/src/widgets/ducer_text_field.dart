@@ -7,6 +7,8 @@ class DucerTextField extends StatelessWidget {
   final bool obscureText;
   final String labelText;
   final TextInputType textInputType;
+  final bool enableInteractiveSelection;
+  final bool enabled;
 
   DucerTextField({
     this.controller,
@@ -14,6 +16,8 @@ class DucerTextField extends StatelessWidget {
     this.obscureText = false,
     this.labelText = '',
     this.textInputType,
+    this.enableInteractiveSelection = true,
+    this.enabled = true,
   });
 
   @override
@@ -25,6 +29,8 @@ class DucerTextField extends StatelessWidget {
         controller: this.controller,
         onChanged: this.onChanged,
         obscureText: this.obscureText,
+        enableInteractiveSelection: this.enableInteractiveSelection,
+        enabled: this.enabled,
 
         decoration: InputDecoration(
           isDense: true,

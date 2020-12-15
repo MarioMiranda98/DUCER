@@ -50,6 +50,7 @@ class LoginPage extends StatelessWidget {
                         text: 'Log in',
                         width: 125.0,
                         colorText: Colors.white,
+                        fontSize: 18,
                         colorButton: Theme.of(Get.context).primaryColor,
                         action: () => _.onSignIn(
                           _emailController.text,
@@ -60,6 +61,7 @@ class LoginPage extends StatelessWidget {
                         text: 'Crear cuenta',
                         width: 125.0,
                         colorText: Colors.white,
+                        fontSize: 18,
                         colorButton: Theme.of(Get.context).primaryColor,
                         action: () => _.toCreateAccount(),
                       )

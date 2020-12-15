@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 import 'package:ducer/src/utils/helpers.dart';
-import 'package:ducer/src/pages/create_account.dart';
+import 'package:ducer/src/pages/create_account_page.dart';
 import 'package:ducer/src/utils/validators.dart';
 import 'package:ducer/src/pages/home_page.dart';
 import 'package:ducer/src/data/enums/email_enums.dart';
@@ -23,6 +23,6 @@ class LoginController extends GetxController {
   }
 
   void toCreateAccount() {
-    Get.to(CreateAccount());
+    Get.to(CreateAccountPage());
   }
 }

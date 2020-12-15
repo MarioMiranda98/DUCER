@@ -1,5 +1,6 @@
 import 'package:ducer/src/data/enums/email_enums.dart';
 import 'package:ducer/src/data/enums/password_enums.dart';
+import 'package:ducer/src/data/enums/sign_in_enums.dart';
 
 abstract class Validators {
   static EmailErrors emailValidator(String email) {
@@ -19,6 +20,39 @@ abstract class Validators {
     password = password.trim();
     if (password == null || password.isEmpty) return PasswordErrors.EMPTY_PASSWORD;
     if (password.length < 6) return PasswordErrors.PASSWORD_LENGTH;
+    return null;
+  }
+
+  static PasswordErrors passwordsMatch(String password, String confirmPassword) {
+    password = password.trim();
+    confirmPassword = confirmPassword.trim();
+
+    if(password != confirmPassword)
+      return PasswordErrors.PASSWORDS_DO_NOT_MATCH;
+    
+    return null;
+  }
+
+  static SignInErrors nameValidator(String name) {
+    name = name.trim();
+    if(name == null || name.isEmpty) return SignInErrors.EMPTY_NAME;
+    return null;
+  }
+
+  static SignInErrors lastNameValidator(String lastName) {
+    lastName = lastName.trim();
+    if(lastName == null || lastName.isEmpty) return SignInErrors.EMPTY_LAST_NAME;
+    return null;
+  }
+
+  static SignInErrors birthDateValidator(String birthDate) {
+    birthDate = birthDate.trim();
+    if(birthDate == null || birthDate.isEmpty) return SignInErrors.BIRTH_DATE_IS_NOT_SELECTED;
+    return null;
+  }
+
+  static SignInErrors genderValidator(bool isManSeleced, bool isWomanSelected) {
+    if(!isManSeleced && !isWomanSelected) return SignInErrors.GENDER_NOT_SELECTED;
     return null;
   }
 }
