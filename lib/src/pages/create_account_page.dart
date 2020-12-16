@@ -19,15 +19,17 @@ class CreateAccountPage extends StatelessWidget {
 
   void _onSignIn(CreateAccountController controller, bool isManSelected, bool isWomanSelected) {
     controller.validateInputs(
-      _nameController.text,
-      _firstLastNameController.text,
-      _secondLastNameController.text,
-      _birthDateController.text,
-      isManSelected,
-      isWomanSelected,
-      _emailController.text,
-      _passwordController.text,
-      _confirmPasswordController.text
+      <String, dynamic> { 
+        'name': _nameController.text,
+        'firstLastName': _firstLastNameController.text,
+        'secondLastName': _secondLastNameController.text,
+        'birthDate': _birthDateController.text,
+        'isManSelected': isManSelected,
+        'isWomanSelected': isWomanSelected,
+        'email': _emailController.text,
+        'password': _passwordController.text,
+        'confirmPassword': _confirmPasswordController.text
+      }
     );
   }
 

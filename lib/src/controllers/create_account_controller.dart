@@ -16,33 +16,33 @@ class CreateAccountController extends GetxController {
   @override
     get onDelete => super.onDelete;
 
-  void validateInputs(String name, String firstLastName, String secondLastName,
-                      String birthDate, bool isManSelected, bool isWomanSelected,
-                      String email, String password, String confirmPassword) {
+  void validateInputs(Map<String, dynamic> signInForm) {
     
     bool isSignInCorrect = true;
 
-    final validateName = Validators.nameValidator(name);
+    final validateName = Validators.nameValidator(signInForm['name']);
     _signInValidations.add(validateName);
 
-    final validateFirstLastName = Validators.lastNameValidator(firstLastName);
+    final validateFirstLastName = Validators.lastNameValidator(signInForm['firstLastName']);
     _signInValidations.add(validateFirstLastName);
 
-    final validateSecondLastName = Validators.lastNameValidator(secondLastName);
+    final validateSecondLastName = Validators.lastNameValidator(signInForm['secondLastName']);
     _signInValidations.add(validateSecondLastName);
 
-    final validateBirthDate = Validators.birthDateValidator(birthDate);
+    final validateBirthDate = Validators.birthDateValidator(signInForm['birthDate']);
     _signInValidations.add(validateBirthDate);
 
-    final validateGender = Validators.genderValidator(isManSelected, isWomanSelected);
+    final validateGender = Validators.genderValidator(
+      signInForm['isManSelected'], signInForm['isWomanSelected']);
     _signInValidations.add(validateGender);
 
-    final validateEmail = Validators.emailValidator(email);
+    final validateEmail = Validators.emailValidator(signInForm['email']);
 
-    final validatePassword = Validators.passwordValidator(password);
+    final validatePassword = Validators.passwordValidator(signInForm['password']);
     _passwordValidations.add(validatePassword);
 
-    final validatePasswordMatches = Validators.passwordsMatch(password, confirmPassword);
+    final validatePasswordMatches = Validators.passwordsMatch(
+      signInForm['password'], signInForm['confirmPassword']);
     _passwordValidations.add(validatePasswordMatches);
 
     SignInErrors sie;

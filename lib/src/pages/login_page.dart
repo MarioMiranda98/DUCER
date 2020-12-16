@@ -42,13 +42,13 @@ class LoginPage extends StatelessWidget {
                     onChanged: null,
                     textInputType: TextInputType.text,
                   ),
-                  SizedBox(height: 20.0),
+                  SizedBox(height: 40.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       DucerButton(
                         text: 'Log in',
-                        width: 125.0,
+                        width: 140.0,
                         colorText: Colors.white,
                         fontSize: 18,
                         colorButton: Theme.of(Get.context).primaryColor,
@@ -57,7 +57,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       DucerButton(
                         text: 'Crear cuenta',
-                        width: 125.0,
+                        width: 140.0,
                         colorText: Colors.white,
                         fontSize: 18,
                         colorButton: Theme.of(Get.context).primaryColor,

@@ -59,7 +59,7 @@ class DucerCard extends StatelessWidget {
                   bodyCard,
                   style: TextStyle(
                     fontFamily: 'Baloo',
-                    fontSize: 20,
+                    fontSize: 18,
                     fontWeight: FontWeight.w100,
                     color: Colors.black,
                   ),
@@ -73,7 +73,7 @@ class DucerCard extends StatelessWidget {
                     colorButton: Theme.of(Get.context).primaryColor,
                     colorText: Colors.white,
                     text: buttonText,
-                    width: 250.0,
+                    width: 220.0,
                     fontSize: 22,
                     action: () => action,
                   ),

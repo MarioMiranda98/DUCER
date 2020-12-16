@@ -37,7 +37,7 @@ class Helpers {
         errorTitle,
         style: TextStyle(
           fontFamily: 'Baloo',
-          color: Color(0xFF275850),
+          color: Theme.of(Get.context).primaryColor,
           fontWeight: FontWeight.w700,
         ),
       ),
