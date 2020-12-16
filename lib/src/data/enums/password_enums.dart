@@ -21,4 +21,21 @@ extension PasswordErrorsExtension on PasswordErrors {
         break;
     }
   }
+
+  String get passwordErrorsTitlte {
+    switch (this) {
+      case PasswordErrors.EMPTY_PASSWORD:
+        return 'Error en contraseña';
+        break;
+      case PasswordErrors.PASSWORD_LENGTH:
+        return 'Error en contraseña';
+        break;
+      case PasswordErrors.PASSWORDS_DO_NOT_MATCH:
+        return 'Error en confirmar contraseña';
+        break;
+      default:
+        return '';
+        break;
+    }
+  }  
 }
