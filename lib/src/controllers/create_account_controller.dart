@@ -49,14 +49,19 @@ class CreateAccountController extends GetxController {
     for(int i = 0; i < _signInValidations.length; i++) {
       sie = _signInValidations[i];
       if(sie != null) {
-        Helpers.openSnackBar('Error en el email', sie.signInError);
+        Helpers.openSnackBar(sie.signInErrorTitle, sie.signInError);
         isSignInCorrect = false;
         break;
       }
     }
 
+    if(validateGender != null && isSignInCorrect) {
+      Helpers.openSnackBar(validateGender.signInErrorTitle, validateGender.signInError);
+      isSignInCorrect = false;
+    }
+
     if(validateEmail != null && isSignInCorrect) {
-      Helpers.openSnackBar('Error en email', validateEmail.emailError);
+      Helpers.openSnackBar(validateEmail.emailErrorTittle, validateEmail.emailError);
       isSignInCorrect = false;
     }
 
@@ -64,7 +69,7 @@ class CreateAccountController extends GetxController {
     for(int i = 0; i < _passwordValidations.length; i++) {
       pe = _passwordValidations[i];
       if(pe != null && isSignInCorrect) {
-        Helpers.openSnackBar('Error en contraseña', pe.passwordErrors);
+        Helpers.openSnackBar(pe.passwordErrorsTitlte, pe.passwordErrors);
         isSignInCorrect = false;
         break;
       }

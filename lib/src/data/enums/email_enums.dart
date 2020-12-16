@@ -17,4 +17,18 @@ extension EmailErrorsExtension on EmailErrors {
         break;     
     }
   }
+
+  String get emailErrorTittle {
+    switch (this) {
+      case EmailErrors.EMPTY_EMAIL:
+        return 'Error en el email';
+        break;
+      case EmailErrors.INVALID_EMAIL:
+        return 'Error en el email';
+        break;
+      default:
+        return '';
+        break;     
+    }
+  }
 }

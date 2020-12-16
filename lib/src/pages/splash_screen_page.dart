@@ -25,7 +25,9 @@ class SplashScreenPage extends StatelessWidget {
                 width: Get.width * 0.25,
                 height: Get.height * 0.15,
                 child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    Theme.of(context).primaryColor
+                  ),
                 ),
               )
             ],

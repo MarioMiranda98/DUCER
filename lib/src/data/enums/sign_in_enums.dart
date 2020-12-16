@@ -33,6 +33,29 @@ extension SignInErrorsExtension on SignInErrors {
         break;
     }
   }
+
+  String get signInErrorTitle {
+    switch (this) {
+      case SignInErrors.EMPTY_NAME:
+        return 'Error en el nombre';
+        break;
+      case SignInErrors.EMPTY_LAST_NAME:    
+        return 'Error en el apellido';
+        break;
+      case SignInErrors.BIRTH_DATE_IS_NOT_SELECTED:
+        return 'Error en la fecha de nacimiento';
+        break;
+      case SignInErrors.GENDER_NOT_SELECTED:
+        return 'Error en el género';
+        break;
+      case SignInErrors.REGISTER_ERROR:
+        return 'Error en el registro';
+        break;
+      default: 
+        return null;
+        break;
+    }
+  }
 }
 
 extension SignInSuccessExtension on SignInSuccess {
