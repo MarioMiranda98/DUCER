@@ -17,11 +17,9 @@ class SplashScreenPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Flexible(
-                child: FractionallySizedBox(
-                  widthFactor: 0.6,
-                  child: Image.asset('assets/logos/ductum1.png')
-                )
-              ),
+                  child: FractionallySizedBox(
+                      widthFactor: 0.6,
+                      child: Image.asset('assets/logos/iconoA.png'))),
               SizedBox(height: Get.height * 0.05),
               SizedBox(
                 width: Get.width * 0.25,
@@ -33,7 +31,7 @@ class SplashScreenPage extends StatelessWidget {
             ],
           ),
         ),
-      ),      
+      ),
     );
   }
 }

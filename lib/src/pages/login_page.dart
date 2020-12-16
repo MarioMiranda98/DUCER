@@ -19,13 +19,13 @@ class LoginPage extends StatelessWidget {
           backgroundColor: Colors.white,
           body: SingleChildScrollView(
             child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
                   SizedBox(height: 100.0),
                   Container(
                     height: 180.0,
-                    child: Image.asset('assets/logos/ductum1.png'),
+                    child: Image.asset('assets/logos/icono_letrasA.png'),
                   ),
                   DucerTextField(
                     controller: _emailController,
@@ -53,9 +53,7 @@ class LoginPage extends StatelessWidget {
                         fontSize: 18,
                         colorButton: Theme.of(Get.context).primaryColor,
                         action: () => _.onSignIn(
-                          _emailController.text,
-                          _passwordController.text
-                        ),
+                            _emailController.text, _passwordController.text),
                       ),
                       DucerButton(
                         text: 'Crear cuenta',
@@ -67,9 +65,7 @@ class LoginPage extends StatelessWidget {
                       )
                     ],
                   ),
-                ]
-              )
-            ),
+                ])),
           ),
         ),
       ),

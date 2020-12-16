@@ -8,47 +8,62 @@ import 'package:ducer/src/widgets/ducer_app_bar.dart';
 import 'package:ducer/src/widgets/ducer_card.dart';
 
 class HomePage extends StatelessWidget {
-  final item = DucerCard(
-    titleCard: 'Hola mundo',
-    bodyCard: 'Esse reprehenderit commodo laborum ipsum laboris ea ut incididunt. Magna tempor duis cupidatat consectetur occaecat reprehenderit ea nostrud ex.',
-    buttonText: 'Ir',
-    action: () => print('hola'),
+  final registrarInc = DucerCard(
+    titleCard: 'Registrar Incidencia',
+    bodyCard: '¿Alguna conducta extraña ha ocurrido? Registralo aquí.',
+    buttonText: 'Registrar',
+    sourceImg: 'assets/images/landscape.jpg',
+    action: () => print('Registrar Incidencia'),
+  );
+
+  final estatus = DucerCard(
+    titleCard: 'Estatus',
+    bodyCard: 'Resultados del sistema DUCER. Verifica el estatus del menor.',
+    buttonText: 'Ver',
+    sourceImg: 'assets/images/estatus.jpg',
+    action: () => print('Estatus'),
+  );
+
+  final test = DucerCard(
+    titleCard: 'Realizar test',
+    bodyCard: 'Realiza test que ayudarán a pre-evaluar la situación del menor.',
+    buttonText: 'Realizar',
+    sourceImg: 'assets/images/test.jpg',
+    action: () => print('Test'),
   );
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: DucerAppBar(),
-        body: Column(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: Get.width * 0.35),
-              child: Text(
-                'Bienvenido',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
-                  fontFamily: 'Baloo'
+          appBar: DucerAppBar(),
+          body: Column(
+            children: <Widget>[
+              Container(
+                  padding: EdgeInsets.symmetric(
+                      vertical: 15.0, horizontal: Get.width * 0.35),
+                  child: Text(
+                    'Bienvenido',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22,
+                        fontFamily: 'Baloo'),
+                  )),
+              Divider(),
+              _buildCarousel(),
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0),
+                child: DucerButton(
+                  colorButton: Theme.of(Get.context).primaryColor,
+                  colorText: Colors.white,
+                  text: 'Cerrar Sesión',
+                  width: 200.0,
+                  fontSize: 24,
+                  action: () => {Get.off(LoginPage())},
                 ),
-              )
-            ),
-            Divider(),
-            _buildCarousel(),
-            Padding(
-              padding: const EdgeInsets.only(top: 15.0),
-              child: DucerButton(
-                colorButton: Theme.of(Get.context).primaryColor,
-                colorText: Colors.white,
-                text: 'Cerrar Sesión',
-                width: 200.0,
-                fontSize: 24,
-                action: () => { Get.off(LoginPage()) },
               ),
-            ),
-          ],
-        )
-      ),
+            ],
+          )),
     );
   }
 
@@ -65,12 +80,9 @@ class HomePage extends StatelessWidget {
               aspectRatio: 1.0,
             ),
             items: [
-              item,
-              item,
-              item,
-              item,
-              item,
-              item,
+              registrarInc,
+              estatus,
+              test,
             ],
           ),
         ],
