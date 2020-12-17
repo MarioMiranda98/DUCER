@@ -6,6 +6,7 @@ import 'package:ducer/src/widgets/ducer_app_bar.dart';
 import 'package:ducer/src/widgets/ducer_card.dart';
 import 'package:ducer/src/pages/login_page.dart';
 import 'package:ducer/src/widgets/ducer_button.dart';
+import 'package:ducer/src/pages/dashboard/dashboard_page.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatelessWidget {
@@ -15,28 +16,28 @@ class HomePage extends StatelessWidget {
       bodyCard: 'Realiza el registro del niño que deseas darle seguimiento.',
       buttonText: 'Dar de alta',
       sourceImg: 'assets/images/test.jpg',
-      action: () => print('Registrar'),
+      action: () => { print('Registrar') },
     ),
     DucerCard(
       titleCard: 'Registrar Incidencia',
       bodyCard: '¿Alguna conducta extraña ha ocurrido? Registralo aquí.',
       buttonText: 'Registrar',
       sourceImg: 'assets/images/landscape.jpg',
-      action: () => print('Registrar Incidencia'),
+      action: () => { print('Registrar Incidencia') },
     ),
     DucerCard(
       titleCard: 'Estatus',
       bodyCard: 'Resultados del sistema DUCER. Verifica el estatus del menor.',
       buttonText: 'Ver',
       sourceImg: 'assets/images/estatus.jpg',
-      action: () => print('Estatus'),
+      action: () => { Get.to(DashboardPage()) },
     ),
     DucerCard(
       titleCard: 'Realizar test',
       bodyCard: 'Realiza test que ayudarán a pre-evaluar la situación del menor.',
       buttonText: 'Realizar',
       sourceImg: 'assets/images/test.jpg',
-      action: () => print('Test'),
+      action: () => { print('Test') },
     ),
   ];
 

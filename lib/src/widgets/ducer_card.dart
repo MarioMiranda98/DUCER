@@ -75,7 +75,7 @@ class DucerCard extends StatelessWidget {
                     text: buttonText,
                     width: 220.0,
                     fontSize: 22,
-                    action: () => action,
+                    action: action,
                   ),
                 ],
               )
