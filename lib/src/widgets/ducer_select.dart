@@ -35,7 +35,10 @@ class DucerSelect extends StatelessWidget {
                 color: Colors.grey
               ),
             ),
-            onPressed: () { Navigator.pop(Get.context); },
+            onPressed: () { 
+              _.selectedChild = null;
+              Navigator.pop(Get.context); 
+            },
           ),
           FlatButton(
             child: Text(

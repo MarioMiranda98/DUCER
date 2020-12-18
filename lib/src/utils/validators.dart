@@ -1,6 +1,8 @@
 import 'package:ducer/src/data/enums/email_enums.dart';
+import 'package:ducer/src/data/enums/incidences_enum.dart';
 import 'package:ducer/src/data/enums/password_enums.dart';
 import 'package:ducer/src/data/enums/sign_in_enums.dart';
+import 'package:ducer/src/models/incidences_model.dart';
 
 abstract class Validators {
   static EmailErrors emailValidator(String email) {
@@ -53,6 +55,11 @@ abstract class Validators {
 
   static SignInErrors genderValidator(bool isManSeleced, bool isWomanSelected) {
     if(!isManSeleced && !isWomanSelected) return SignInErrors.GENDER_NOT_SELECTED;
+    return null;
+  }
+
+  static IncidencesEnum validateIncidence(String text, List<IncidencesModel> selectedIncidences) {
+    if((text == null || text.isEmpty) && selectedIncidences.length == 0) return IncidencesEnum.THERE_ARE_NOT_INCIDENCES_SELECTED;
     return null;
   }
 }
