@@ -137,7 +137,7 @@ class DashboardPage extends StatelessWidget {
                                 }
                               );
 
-                              _.childName = selectedChild.name;
+                              if(selectedChild != null) _.childName = selectedChild.name;
                             },
                           ),
                       ),

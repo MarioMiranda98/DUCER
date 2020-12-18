@@ -7,6 +7,7 @@ import 'package:ducer/src/widgets/ducer_card.dart';
 import 'package:ducer/src/pages/login_page.dart';
 import 'package:ducer/src/widgets/ducer_button.dart';
 import 'package:ducer/src/pages/dashboard/dashboard_page.dart';
+import 'package:ducer/src/pages/register_incidence/register_incidence_page.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatelessWidget {
@@ -23,7 +24,7 @@ class HomePage extends StatelessWidget {
       bodyCard: '¿Alguna conducta extraña ha ocurrido? Registralo aquí.',
       buttonText: 'Registrar',
       sourceImg: 'assets/images/landscape.jpg',
-      action: () => { print('Registrar Incidencia') },
+      action: () => { Get.to(RegisterIncidencePage()) },
     ),
     DucerCard(
       titleCard: 'Estatus',

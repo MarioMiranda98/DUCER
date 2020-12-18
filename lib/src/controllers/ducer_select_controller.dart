@@ -68,4 +68,8 @@ class DucerSelectController extends GetxController {
 
   List<CheckboxListTile> get listTile => _listTile; 
   ChildrenModel get selectedChild => _selectedChild;
+
+  set selectedChild(ChildrenModel value) {
+    this._selectedChild = value;
+  }
 }
