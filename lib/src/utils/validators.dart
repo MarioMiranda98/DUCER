@@ -1,3 +1,4 @@
+import 'package:ducer/src/data/enums/child_enums.dart';
 import 'package:ducer/src/data/enums/email_enums.dart';
 import 'package:ducer/src/data/enums/incidences_enum.dart';
 import 'package:ducer/src/data/enums/password_enums.dart';
@@ -60,6 +61,11 @@ abstract class Validators {
 
   static IncidencesEnum validateIncidence(String text, List<IncidencesModel> selectedIncidences) {
     if((text == null || text.isEmpty) && selectedIncidences.length == 0) return IncidencesEnum.THERE_ARE_NOT_INCIDENCES_SELECTED;
+    return null;
+  }
+
+  static ChildEnums validateFields(String text) {
+    if(text == null || text.isEmpty) return ChildEnums.EMPTY_FIELD;
     return null;
   }
 }

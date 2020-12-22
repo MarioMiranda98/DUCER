@@ -8,6 +8,7 @@ import 'package:ducer/src/pages/login_page.dart';
 import 'package:ducer/src/widgets/ducer_button.dart';
 import 'package:ducer/src/pages/dashboard/dashboard_page.dart';
 import 'package:ducer/src/pages/register_incidence/register_incidence_page.dart';
+import 'package:ducer/src/pages/register_child/register_child_page.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatelessWidget {
@@ -17,7 +18,7 @@ class HomePage extends StatelessWidget {
       bodyCard: 'Realiza el registro del niño que deseas darle seguimiento.',
       buttonText: 'Dar de alta',
       sourceImg: 'assets/images/test.jpg',
-      action: () => { print('Registrar') },
+      action: () => { Get.to(RegisterChildPage()) },
     ),
     DucerCard(
       titleCard: 'Registrar Incidencia',
@@ -39,6 +40,13 @@ class HomePage extends StatelessWidget {
       buttonText: 'Realizar',
       sourceImg: 'assets/images/test.jpg',
       action: () => { print('Test') },
+    ),
+     DucerCard(
+      titleCard: 'Mi perfil',
+      bodyCard: 'Observa tu perfil y niños asociados a él.',
+      buttonText: 'Ver',
+      sourceImg: 'assets/images/test.jpg',
+      action: () => { print('Perfil') },
     ),
   ];
 
