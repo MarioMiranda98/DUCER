@@ -8,6 +8,7 @@ import 'package:ducer/src/pages/login_page.dart';
 import 'package:ducer/src/widgets/ducer_button.dart';
 import 'package:ducer/src/pages/dashboard/dashboard_page.dart';
 import 'package:ducer/src/pages/register_incidence/register_incidence_page.dart';
+import 'package:ducer/src/pages/available_tests/available_tests_page.dart';
 import 'package:ducer/src/pages/register_child/register_child_page.dart';
 
 // ignore: must_be_immutable
@@ -39,7 +40,7 @@ class HomePage extends StatelessWidget {
       bodyCard: 'Realiza test que ayudarán a pre-evaluar la situación del menor.',
       buttonText: 'Realizar',
       sourceImg: 'assets/images/test.jpg',
-      action: () => { print('Test') },
+      action: () => { Get.to(AvailableTestsPage()) },
     ),
      DucerCard(
       titleCard: 'Mi perfil',
