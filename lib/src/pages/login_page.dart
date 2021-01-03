@@ -19,56 +19,66 @@ class LoginPage extends StatelessWidget {
           backgroundColor: Colors.white,
           body: SingleChildScrollView(
             child: Container(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
                   SizedBox(height: 100.0),
-                  Container(
-                    height: 180.0,
-                    child: Image.asset('assets/logos/icono_letrasA.png'),
-                  ),
-                  DucerTextField(
-                    controller: _emailController,
-                    labelText: 'Email',
-                    obscureText: false,
-                    onChanged: null,
-                    textInputType: TextInputType.emailAddress,
-                  ),
+                  _createImage(),
+                  _createInput(_emailController, 'Email', TextInputType.emailAddress, false),
                   SizedBox(height: 15.0),
-                  DucerTextField(
-                    controller: _passwordController,
-                    labelText: 'Password',
-                    obscureText: true,
-                    onChanged: null,
-                    textInputType: TextInputType.text,
-                  ),
+                  _createInput(_passwordController, 'Contraseña', TextInputType.text, true),
                   SizedBox(height: 40.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      DucerButton(
-                        text: 'Log in',
-                        width: 140.0,
-                        colorText: Colors.white,
-                        fontSize: 18,
-                        colorButton: Theme.of(Get.context).primaryColor,
-                        action: () => _.onSignIn(
-                            _emailController.text, _passwordController.text),
-                      ),
-                      DucerButton(
-                        text: 'Crear cuenta',
-                        width: 140.0,
-                        colorText: Colors.white,
-                        fontSize: 18,
-                        colorButton: Theme.of(Get.context).primaryColor,
-                        action: () => _.toCreateAccount(),
-                      )
-                    ],
-                  ),
-                ])),
+                  _buildButtons(_)
+                ]
+              )
+            ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _createImage() {
+    return Container(
+      height: 180.0,
+      child: Image.asset('assets/logos/icono_letrasA.png'),
+    );
+  }
+
+  Widget _createInput(TextEditingController controller, String text, 
+            TextInputType textInputType, bool obscureText) {
+
+    return DucerTextField(
+      controller: controller,
+      labelText: text,
+      obscureText: obscureText,
+      onChanged: null,
+      textInputType: textInputType,
+    );
+  }
+
+  Widget _buildButtons(LoginController controller) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        DucerButton(
+          text: 'Log in',
+          width: 140.0,
+          colorText: Colors.white,
+          fontSize: 18,
+          colorButton: Theme.of(Get.context).primaryColor,
+          action: () => controller.onSignIn(
+              _emailController.text, _passwordController.text),
+        ),
+        DucerButton(
+          text: 'Crear cuenta',
+          width: 140.0,
+          colorText: Colors.white,
+          fontSize: 18,
+          colorButton: Theme.of(Get.context).primaryColor,
+          action: () => controller.toCreateAccount(),
+        )
+      ],
     );
   }
 }
