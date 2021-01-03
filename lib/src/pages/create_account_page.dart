@@ -50,85 +50,101 @@ class CreateAccountPage extends StatelessWidget {
                   _createInput(_nameController, 'Nombre', false, true, true),
                   _createInput(_firstLastNameController, 'Apellido Paterno', false, true, true),
                   _createInput(_secondLastNameController, 'Apellido Materno', false, true, true),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget> [
-                      Container(
-                        width: 200.0,
-                        child: _createInput(_birthDateController, 'Fecha de nacimiento', false, false, false)
-                      ),
-                      DucerButton(
-                        action: () async {
-                          final aux = await Helpers.buildDatePicker();
-                          aux != null ? 
-                            _birthDateController.text = aux.toString().split(' ')[0]
-                          :
-                            _birthDateController.text = '';
-                        },
-                        colorButton: Theme.of(context).primaryColor,
-                        colorText: Colors.white,
-                        fontSize: 16,
-                        text: 'Seleccionar',
-                        width: 100.0,
-                      ),
-                    ]
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(top: 15.0),
-                    child: Text('Selecciona tu género',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: Get.height * 0.020
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        width: 150.0,
-                        child: CheckboxListTile(
-                          value: _.isMan,
-                          title: Text('Hombre', style: TextStyle(color: Colors.grey)),
-                          onChanged: (value) {
-                            _.isMan = value;
-                          },
-                          activeColor: Theme.of(context).primaryColor,
-                        )
-                      ),
-                      Container(
-                        width: 150.0,
-                        child: CheckboxListTile(
-                          value: _.isWoman,
-                          title: Text('Mujer', style: TextStyle(color: Colors.grey)),
-                          onChanged: (value) {
-                            _.isWoman = value;
-                          },
-                          activeColor: Theme.of(context).primaryColor,
-                        )
-                      ),
-                    ],
-                  ),
+                  _buildBirthDateInput(),
+                  _buildGenderSelection(_),
                   _createInput(_emailController, 'Email', false, true, true),
                   _createInput(_passwordController, 'Contraseña', true, true, true),
                   _createInput(_confirmPasswordController, 'Confirma tu contraseña', true, true, true),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: DucerButton(
-                      action: () => _onSignIn(_, _.isMan, _.isWoman),
-                      colorButton: Theme.of(context).primaryColor,
-                      fontSize: 20,
-                      colorText: Colors.white,
-                      text: 'Registrarse',
-                      width: 175.0,
-                    ),
-                  ),
+                  _buildButton(_),
                 ],
               ),
             ),
           ),      
         ),
+      ),
+    );
+  }
+
+  Widget _buildBirthDateInput() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget> [
+        Container(
+          width: 200.0,
+          child: _createInput(_birthDateController, 'Fecha de nacimiento', false, false, false)
+        ),
+        DucerButton(
+          action: () async {
+            final aux = await Helpers.buildDatePicker();
+            aux != null ? 
+              _birthDateController.text = aux.toString().split(' ')[0]
+            :
+              _birthDateController.text = '';
+          },
+          colorButton: Theme.of(Get.context).primaryColor,
+          colorText: Colors.white,
+          fontSize: 16,
+          text: 'Seleccionar',
+          width: 100.0,
+        ),
+      ]
+    );
+  }
+
+  Widget _buildGenderSelection(CreateAccountController controller) {
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.only(top: 15.0),
+          child: Text('Selecciona tu género',
+            style: TextStyle(
+              color: Colors.grey,
+              fontSize: Get.height * 0.020
+            ),
+          ),
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              width: 150.0,
+              child: CheckboxListTile(
+                value: controller.isMan,
+                title: Text('Hombre', style: TextStyle(color: Colors.grey)),
+                onChanged: (value) {
+                  controller.isMan = value;
+                },
+                activeColor: Theme.of(Get.context).primaryColor,
+              )
+            ),
+            Container(
+              width: 150.0,
+              child: CheckboxListTile(
+                value: controller.isWoman,
+                title: Text('Mujer', style: TextStyle(color: Colors.grey)),
+                onChanged: (value) {
+                  controller.isWoman = value;
+                },
+                activeColor: Theme.of(Get.context).primaryColor,
+              )
+            ),
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget _buildButton(CreateAccountController controller) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: DucerButton(
+        action: () => _onSignIn(controller, controller.isMan, controller.isWoman),
+        colorButton: Theme.of(Get.context).primaryColor,
+        fontSize: 20,
+        colorText: Colors.white,
+        text: 'Registrarse',
+        width: 175.0,
       ),
     );
   }
