@@ -10,6 +10,7 @@ import 'package:ducer/src/pages/dashboard/dashboard_page.dart';
 import 'package:ducer/src/pages/register_incidence/register_incidence_page.dart';
 import 'package:ducer/src/pages/available_tests/available_tests_page.dart';
 import 'package:ducer/src/pages/register_child/register_child_page.dart';
+import 'package:ducer/src/pages/profile_page/profile_page.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatelessWidget {
@@ -47,7 +48,7 @@ class HomePage extends StatelessWidget {
       bodyCard: 'Observa tu perfil y niños asociados a él.',
       buttonText: 'Ver',
       sourceImg: 'assets/images/test.jpg',
-      action: () => { print('Perfil') },
+      action: () => { Get.to(ProfilePage()) },
     ),
   ];
 
