@@ -56,9 +56,11 @@ class TestResolvePage extends StatelessWidget {
   List<Widget> _buildQuestions(TestResolveController controller) {
     List<Widget> aux = List();
 
-    controller.questions.forEach((item) => {
-      aux.add(QuestionWidget(question: item))
-    });
+    for(int i = 0; i < controller.questions.length; i++) 
+      aux.add(QuestionWidget(
+        question: controller.questions[i], 
+        controllerValueIndex: i
+      ));
 
     return aux;
   }
@@ -67,11 +69,11 @@ class TestResolvePage extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(top: 30.0),
       child: DucerButton(
-        action: () => { 
+        action: () {
           Get.offAll(
             ResultTestPage(testName: controller.testName), 
             transition: Transition.fadeIn
-          ) 
+          ); 
         },
         colorButton: Theme.of(Get.context).primaryColor,
         colorText: Colors.white,
