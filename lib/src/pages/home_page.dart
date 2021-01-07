@@ -20,35 +20,36 @@ class HomePage extends StatelessWidget {
       bodyCard: 'Realiza el registro del niño que deseas darle seguimiento.',
       buttonText: 'Dar de alta',
       sourceImg: 'assets/images/test.jpg',
-      action: () => { Get.to(RegisterChildPage()) },
+      action: () => {Get.to(RegisterChildPage())},
     ),
     DucerCard(
       titleCard: 'Registrar Incidencia',
       bodyCard: '¿Alguna conducta extraña ha ocurrido? Registralo aquí.',
       buttonText: 'Registrar',
       sourceImg: 'assets/images/landscape.jpg',
-      action: () => { Get.to(RegisterIncidencePage()) },
+      action: () => {Get.to(RegisterIncidencePage())},
     ),
     DucerCard(
       titleCard: 'Estatus',
       bodyCard: 'Resultados del sistema DUCER. Verifica el estatus del menor.',
       buttonText: 'Ver',
       sourceImg: 'assets/images/estatus.jpg',
-      action: () => { Get.to(DashboardPage()) },
+      action: () => {Get.to(DashboardPage())},
     ),
     DucerCard(
       titleCard: 'Realizar test',
-      bodyCard: 'Realiza test que ayudarán a pre-evaluar la situación del menor.',
+      bodyCard:
+          'Realiza test que ayudarán a pre-evaluar la situación del menor.',
       buttonText: 'Realizar',
       sourceImg: 'assets/images/test.jpg',
-      action: () => { Get.to(AvailableTestsPage()) },
+      action: () => {Get.to(AvailableTestsPage())},
     ),
-     DucerCard(
+    DucerCard(
       titleCard: 'Mi perfil',
       bodyCard: 'Observa tu perfil y niños asociados a él.',
       buttonText: 'Ver',
-      sourceImg: 'assets/images/test.jpg',
-      action: () => { Get.to(ProfilePage()) },
+      sourceImg: 'assets/images/perfil.jpg',
+      action: () => {Get.to(ProfilePage())},
     ),
   ];
 

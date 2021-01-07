@@ -15,7 +15,7 @@ class ProfilePage extends StatelessWidget {
         child: Scaffold(
           appBar: DucerAppBar(),
           body: Column(
-            children: <Widget> [
+            children: <Widget>[
               _buildHeader(),
               _buildBody(_),
             ],
@@ -39,45 +39,32 @@ class ProfilePage extends StatelessWidget {
     return Container(
       width: Get.width * 0.9,
       padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
-      child: ListView(
-        shrinkWrap: true,
-        children: <Widget> [
-          _buildInfoParent(controller),
-          ChildrenTableWidget(),
-        ]
-      ),
+      child: ListView(shrinkWrap: true, children: <Widget>[
+        _buildInfoParent(controller),
+        ChildrenTableWidget(),
+      ]),
     );
   }
 
   Widget _buildInfoParent(ProfileController controller) {
     return Container(
-      child: Column(
-        children: <Widget> [
-          Image.asset(
-            'assets/images/kenshiro.jpg',
-            height: 200.0,
-            fit: BoxFit.cover
+      child: Column(children: <Widget>[
+        Image.asset('assets/images/user.jpg', height: 200.0, fit: BoxFit.cover),
+        Container(
+          padding: EdgeInsets.only(top: 10.0),
+          child: Text(
+            'Nombre: ${controller.name} ${controller.firstLastName} ${controller.secondLastName}',
+            style: TextStyle(fontSize: 16),
           ),
-          Container(
-            padding: EdgeInsets.only(top: 10.0),
-            child: Text(
-              'Nombre: ${controller.name} ${controller.firstLastName} ${controller.secondLastName}',
-              style: TextStyle(
-                fontSize: 16
-              ),
-            ),
+        ),
+        Container(
+          padding: EdgeInsets.only(top: 10.0),
+          child: Text(
+            'Fecha de creación: ${controller.creationDate}',
+            style: TextStyle(fontSize: 16),
           ),
-          Container(
-            padding: EdgeInsets.only(top: 10.0),
-            child: Text(
-              'Fecha de creación: ${controller.creationDate}',
-              style: TextStyle(
-                fontSize: 16
-              ),
-            ),
-          ),
-        ]
-      ),
+        ),
+      ]),
     );
   }
 }
