@@ -134,7 +134,7 @@ class RegisterChildPage extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          _buildText('¿Va al psicologo?'),
+          _buildText('¿Tiene diagnósticado algún problema?'),
           CustomSwitch(
             value: controller.doesChildGoToPsychologist,
             activeColor: Theme.of(Get.context).primaryColor,
