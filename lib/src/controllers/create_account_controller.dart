@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 
 import 'package:ducer/src/data/enums/email_enums.dart';
 import 'package:ducer/src/data/enums/password_enums.dart';
-import 'package:ducer/src/utils/validators.dart';
+import 'package:ducer/src/utils/validators.dart';   
 import 'package:ducer/src/utils/helpers.dart';
 import 'package:ducer/src/data/enums/sign_in_enums.dart';
+import 'package:ducer/src/models/create_account_model.dart';
+import 'package:ducer/src/data/services/create_account_service.dart';
 
 class CreateAccountController extends GetxController {
   bool _isMan = false;
@@ -16,7 +18,7 @@ class CreateAccountController extends GetxController {
   @override
     get onDelete => super.onDelete;
 
-  void validateInputs(Map<String, dynamic> signInForm) {
+  Future<void> validateInputs(Map<String, dynamic> signInForm) async {
     
     bool isSignInCorrect = true;
 
@@ -75,11 +77,35 @@ class CreateAccountController extends GetxController {
       }
     }
 
-    if(isSignInCorrect) { 
-      Helpers.openSnackBar('¡Exito!', SignInSuccess.USER_CREATED.message);
-      Future.delayed(Duration(seconds: 3), () {
-        Get.offAll(HomePage(), transition: Transition.cupertino);
-      });
+    if(isSignInCorrect) {
+      final values = CreateAccountModel.fromJson(signInForm);
+      final body = {'email': signInForm['email'], 'password': signInForm['password']};
+
+      final createAccountService = CreateAccountService.instance;
+
+      final repeated = await createAccountService.validateRepeated(
+        tableName: 'Register_user', 
+        body: body
+      );
+
+      if(repeated != null) {
+          Helpers.openSnackBar('Error', 'El correo ya esta registrado');
+        } else {
+        
+        final res = await createAccountService.registerUser(
+          tableName: 'Register_user', 
+          body: values.toJson()  
+        );
+  
+        if(res != 0) {
+          Helpers.openSnackBar('¡Exito!', SignInSuccess.USER_CREATED.message);
+          Future.delayed(Duration(seconds: 3), () {
+            Get.offAll(HomePage(), transition: Transition.cupertino);
+          });
+        } else {
+          Helpers.openSnackBar('Error', 'Ocurrio un error durante el registro');
+        }
+      }
     }
 
     _signInValidations.clear();
