@@ -6,9 +6,10 @@ import 'package:ducer/src/utils/helpers.dart';
 import 'package:ducer/src/utils/validators.dart';
 import 'package:ducer/src/data/enums/incidences_enum.dart';
 import 'package:ducer/src/pages/home_page.dart';
+import 'package:ducer/src/models/children_model.dart';
 
 class RegisterIncidenceController extends GetxController {
-  String _childName;
+  ChildrenModel _child;
   List<CheckboxListTile> _checkBoxOptions = new List();
   List<IncidencesModel> _incidences = [
     IncidencesModel(incidenceName: 'Se peleó en la escuela', isChecked: false, order: 0),
@@ -31,11 +32,11 @@ class RegisterIncidenceController extends GetxController {
       _createCheckboxList();
   }
 
-  String get childName => _childName;
+  ChildrenModel get child => _child;
   List<CheckboxListTile> get checkBoxOptions => _checkBoxOptions; 
 
-  set childName(String value) {
-    _childName = value;
+  set child(ChildrenModel value) {
+    _child = value;
 
     update(['child-name']);
     update(['incidences-menu']);

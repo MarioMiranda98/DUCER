@@ -29,9 +29,13 @@ class GenericCrudRepository {
     );
   }
 
-  Future<ResponseDataBaseModel> readAll({String tableName}) async {
+  Future<ResponseDataBaseModel> readAll({String tableName, String email}) async {
     final dataBaseRepository = await DataBaseRepository.instance.database;
-    final res = await dataBaseRepository.query(tableName);
+    final res = await dataBaseRepository.query(
+      tableName,
+      where: 'email = ?',
+      whereArgs: [email]
+    );
 
     return ResponseDataBaseModel(
       data: res.isNotEmpty ? res : [],

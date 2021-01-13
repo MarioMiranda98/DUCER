@@ -1,3 +1,4 @@
+import 'package:ducer/src/models/children_model.dart';
 import 'package:ducer/src/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -5,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:ducer/src/utils/helpers.dart';
 import 'package:ducer/src/utils/validators.dart';
 import 'package:ducer/src/data/enums/child_enums.dart';
+import 'package:ducer/src/data/services/child_service.dart';
+import 'package:ducer/src/data/services/secure_storage_service.dart';
 
 class RegisterChildController extends GetxController {
   bool _doesChildGoToPsychologist = false;
@@ -38,7 +41,7 @@ class RegisterChildController extends GetxController {
     _year = 2000;
   }
 
-  void onRegisterChild(Map<String, dynamic> childForm) {
+  void onRegisterChild(Map<String, dynamic> childForm) async {
     bool isCorrect = true;
 
     final validateName = Validators.validateFields(childForm['name']);
@@ -61,10 +64,44 @@ class RegisterChildController extends GetxController {
     }
 
     if(isCorrect) {
-      Helpers.openSnackBar(ChildEnums.SUCCESS_REGISTER.title, ChildEnums.SUCCESS_REGISTER.message);
-      Future.delayed((Duration(seconds: 3)), () {
-        Get.off(HomePage(), transition: Transition.fade);
-      });
+      final childService = ChildService.instance;
+      final userEmail = await SecureStorageService.instance.getUserEmail();
+
+      final validateRepeated = await childService.getChild(
+        body: {
+          'email' : userEmail,
+          'name' : childForm['name'],
+          'firstLastName' : childForm['firstLastName'],
+          'secondLastName' : childForm['secondLastName']
+        }
+      );
+
+      if(validateRepeated == null) {
+        final birthDate = '$year-$month-$day';
+        final values = ChildrenModel.fromJson({
+          'email' : userEmail,
+          'name' : childForm['name'],
+          'first_last_name' : childForm['firstLastName'],
+          'second_last_name' : childForm['secondLastName'],
+          'dob': birthDate,
+          'diagnosis': _selectedDiagnosis,
+          'selected' : false,
+          'order' : 0
+        });
+
+        final res = await childService.registerChild(
+          body: values.toJson()
+        );
+
+        if(res > 0) {
+          Helpers.openSnackBar(ChildEnums.SUCCESS_REGISTER.title, ChildEnums.SUCCESS_REGISTER.message);
+          Future.delayed((Duration(seconds: 3)), () {
+            Get.off(HomePage(), transition: Transition.fade);
+          });
+        }
+      } else {
+         Helpers.openSnackBar('Error', 'Usuario Repetido');
+      }
     }
   }
 
@@ -73,12 +110,15 @@ class RegisterChildController extends GetxController {
   int get month => this._month;
   int get year => this._year;
 
+
   set doesChildGoToPsychologist(bool value) {
     this._doesChildGoToPsychologist = value;
     
     if(!value) {
       _diagnosisValues[_diagnosis[0]] = true;
       _updateChecks(_diagnosis[0]);
+    } else {
+      _selectedDiagnosis = 'Depresion';
     }
 
     update();

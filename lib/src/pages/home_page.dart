@@ -11,6 +11,7 @@ import 'package:ducer/src/pages/register_incidence/register_incidence_page.dart'
 import 'package:ducer/src/pages/available_tests/available_tests_page.dart';
 import 'package:ducer/src/pages/register_child/register_child_page.dart';
 import 'package:ducer/src/pages/profile_page/profile_page.dart';
+import 'package:ducer/src/data/services/secure_storage_service.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatelessWidget {
@@ -81,7 +82,10 @@ class HomePage extends StatelessWidget {
                     text: 'Cerrar Sesión',
                     width: Get.width * 0.9,
                     fontSize: 24,
-                    action: () => {Get.off(LoginPage())},
+                    action: () async {
+                      await SecureStorageService.instance.deleteUserEmail();
+                      Get.off(LoginPage());
+                    },
                   ),
                 ),
               ],

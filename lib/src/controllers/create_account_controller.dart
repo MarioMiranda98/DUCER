@@ -1,3 +1,4 @@
+import 'package:ducer/src/data/services/secure_storage_service.dart';
 import 'package:ducer/src/pages/home_page.dart';
 import 'package:get/get.dart';
 
@@ -84,7 +85,6 @@ class CreateAccountController extends GetxController {
       final createAccountService = CreateAccountService.instance;
 
       final repeated = await createAccountService.validateRepeated(
-        tableName: 'Register_user', 
         body: body
       );
 
@@ -93,11 +93,11 @@ class CreateAccountController extends GetxController {
         } else {
         
         final res = await createAccountService.registerUser(
-          tableName: 'Register_user', 
           body: values.toJson()  
         );
   
         if(res != 0) {
+          await SecureStorageService.instance.saveUserEmail(signInForm['email']);
           Helpers.openSnackBar('¡Exito!', SignInSuccess.USER_CREATED.message);
           Future.delayed(Duration(seconds: 3), () {
             Get.offAll(HomePage(), transition: Transition.cupertino);

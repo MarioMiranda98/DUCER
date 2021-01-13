@@ -1,3 +1,4 @@
+import 'package:ducer/src/data/services/secure_storage_service.dart';
 import 'package:get/get.dart';
 
 import 'package:ducer/src/models/login_model.dart';
@@ -18,12 +19,13 @@ class LoginController extends GetxController {
       final aux = LoginModel.fromJson({'email': email, 'password': password});
       final loginService = LoginService.instance;
       final res = await loginService.logIn(
-        tableName: 'Register_user',
         body: aux.toJson()
       );
 
-      if(res != null) Get.off(HomePage());
-      else Helpers.openSnackBar('Error en el login', 'Datos erroneos');
+      if(res != null) { 
+        await SecureStorageService.instance.saveUserEmail(email);
+        Get.off(HomePage());
+      } else Helpers.openSnackBar('Error en el login', 'Datos erroneos');
     } else {
       if(validateEmail != null)
         Helpers.openSnackBar('Error en email', validateEmail.emailError);

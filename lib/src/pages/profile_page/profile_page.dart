@@ -37,8 +37,8 @@ class ProfilePage extends StatelessWidget {
 
   Widget _buildBody(ProfileController controller) {
     return Container(
-      width: Get.width * 0.9,
-      padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
+      width: Get.width * 0.95,
+      padding: EdgeInsets.symmetric(horizontal: Get.width * 0.025),
       child: ListView(shrinkWrap: true, children: <Widget>[
         _buildInfoParent(controller),
         ChildrenTableWidget(),
@@ -54,13 +54,6 @@ class ProfilePage extends StatelessWidget {
           padding: EdgeInsets.only(top: 10.0),
           child: Text(
             'Nombre: ${controller.name} ${controller.firstLastName} ${controller.secondLastName}',
-            style: TextStyle(fontSize: 16),
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.only(top: 10.0),
-          child: Text(
-            'Fecha de creación: ${controller.creationDate}',
             style: TextStyle(fontSize: 16),
           ),
         ),

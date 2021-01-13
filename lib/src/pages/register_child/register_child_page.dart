@@ -78,7 +78,7 @@ class RegisterChildPage extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        fontSize: 18.0,
+        fontSize: 14.0,
         color: Colors.grey
       )
     );
