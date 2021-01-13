@@ -10,17 +10,15 @@ class CreateAccountService {
   Future<int> registerUser({String tableName, Map<String, dynamic> body}) async {
     final createAccountRepository = CreateAccountRepository.instance; 
     final res = await createAccountRepository.registerUser(
-      tableName: tableName,
       body: body
     );
 
     return res;
   }
 
-  Future<dynamic> validateRepeated({String tableName, Map<String, dynamic> body}) async {
+  Future<dynamic> validateRepeated({Map<String, dynamic> body}) async {
     final createAccountRepository = CreateAccountRepository.instance;
     final res = await createAccountRepository.validateRepeated(
-      tableName: tableName,
       body: body,
     );
 

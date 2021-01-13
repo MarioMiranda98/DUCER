@@ -1,3 +1,4 @@
+import 'package:ducer/src/data/enums/data_base_tables_enums.dart';
 import 'package:ducer/src/data/interfaces/login_interface.dart';
 import 'package:ducer/src/data/repositories/generic_crud_repository.dart';
 import 'package:ducer/src/models/response_data_base_model.dart';
@@ -9,10 +10,10 @@ class LoginRepository extends LoginInterface {
 
   static LoginRepository _instance = LoginRepository._internal();
 
-  Future<ResponseDataBaseModel> logIn({String tableName, Map<String, dynamic> body}) async {
+  Future<ResponseDataBaseModel> logIn({Map<String, dynamic> body}) async {
     final genericCrud = GenericCrudRepository.instance;
     final res = await genericCrud.readFor(
-      tableName: tableName,
+      tableName: DataBaseTablesEnum.REGISTER_USER.tableName,
       where: 'email = ? AND password = ?',
       args: [body['email'], body['password']]
     );

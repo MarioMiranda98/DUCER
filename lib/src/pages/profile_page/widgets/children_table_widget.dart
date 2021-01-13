@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:ducer/src/widgets/ducer_button.dart';
+import 'package:ducer/src/models/children_model.dart';
 import 'package:ducer/src/controllers/children_table_controller.dart';
 
 class ChildrenTableWidget extends StatelessWidget {
@@ -19,7 +20,7 @@ class ChildrenTableWidget extends StatelessWidget {
               style: TextStyle(
                 color: Colors.grey
                 ),  
-              )),
+            )),
             DataColumn(label: Text(
               'Acciones',
               style: TextStyle(
@@ -40,7 +41,9 @@ class ChildrenTableWidget extends StatelessWidget {
       aux.add(DataRow(
         selected: false,
         cells: [
-          DataCell(Text(item)),
+          DataCell(Text(
+            '${item.name} ${item.firstLastName} ${item.secondLastName}'
+          )),
           DataCell(_buildButton(item)),
         ]
       ))
@@ -49,10 +52,12 @@ class ChildrenTableWidget extends StatelessWidget {
     return aux;
   }
 
-  Widget _buildButton(String childName) {
+  Widget _buildButton(ChildrenModel item) {
     return Container(
       child: DucerButton(
-        action: () => print(childName),
+        action: () => print(
+          '${item.name} ${item.firstLastName} ${item.secondLastName}'
+        ),
         colorButton: Theme.of(Get.context).primaryColor,
         colorText: Colors.white,
         fontSize: 12.0,

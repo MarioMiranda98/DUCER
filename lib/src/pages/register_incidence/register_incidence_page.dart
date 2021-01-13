@@ -37,7 +37,8 @@ class RegisterIncidencePage extends StatelessWidget {
         id: 'child-name',
         init: RegisterIncidenceController(),
         builder: (_) => DucerHeader(
-          childName: 'Pedrito Lopex',
+          childName: _.child != null && _.child.name.isNotEmpty ? 
+                      '${_.child.name} ${_.child.firstLastName} ${_.child.secondLastName}' : '',
           screenName: '¿Qué pasó?',
         ),
       ),
@@ -51,7 +52,7 @@ class RegisterIncidencePage extends StatelessWidget {
         height: Get.height * 0.7,
         child: Stack(
           children: <Widget>[
-            _.childName != null ?
+            _.child != null && _.child.name.isNotEmpty ?
               SizedBox(
                 height: Get.height,
                 child: Container(
@@ -111,7 +112,7 @@ class RegisterIncidencePage extends StatelessWidget {
 
   Widget _buildButton(RegisterIncidenceController controller) {
     return Padding(
-    padding: EdgeInsets.only(top: controller.childName != null ? Get.height * 0.62 : Get.height * 0.2),
+    padding: EdgeInsets.only(top: controller.child != null ? Get.height * 0.62 : Get.height * 0.2),
     child: DucerButton(
         colorButton: Theme.of(Get.context).primaryColor,
         colorText: Colors.white,
@@ -126,7 +127,7 @@ class RegisterIncidencePage extends StatelessWidget {
             }
           );
           
-          if(selectedChild != null) controller.childName = selectedChild.name;
+          if(selectedChild != null) controller.child = selectedChild;
         },
       ),
     );
