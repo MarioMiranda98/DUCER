@@ -1,10 +1,11 @@
-import 'package:ducer/src/pages/result_test_page.dart';
+import 'package:ducer/src/utils/tests_results.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:ducer/src/widgets/ducer_button.dart';
 import 'package:ducer/src/widgets/ducer_header.dart';
 import 'package:ducer/src/widgets/ducer_app_bar.dart';
+import 'package:ducer/src/pages/result_test_page.dart';
 import 'package:ducer/src/controllers/test_resolve_controller.dart';
 import 'package:ducer/src/pages/test_resolve/widgets/question_widget.dart';
 
@@ -46,9 +47,10 @@ class TestResolvePage extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0)
       ),
       height: Get.height * 0.55,
-      child: ListView(
-        shrinkWrap: true,
-        children: _buildQuestions(controller),
+      child: SingleChildScrollView(
+        child: Column(
+          children: _buildQuestions(controller),
+        )
       ),
     );
   }
@@ -59,7 +61,8 @@ class TestResolvePage extends StatelessWidget {
     for(int i = 0; i < controller.questions.length; i++) 
       aux.add(QuestionWidget(
         question: controller.questions[i], 
-        controllerValueIndex: i
+        controllerValueIndex: i,
+        childProblem: controller.selectedValues[i].childProblem,
       ));
 
     return aux;
@@ -70,8 +73,14 @@ class TestResolvePage extends StatelessWidget {
       padding: EdgeInsets.only(top: 30.0),
       child: DucerButton(
         action: () {
+          final res = TestResults.instance.calculateResult(
+              controller.testIdentifier, controller.selectedValues);
           Get.offAll(
-            ResultTestPage(testName: controller.testName), 
+            ResultTestPage(
+              testName: controller.testName,
+              testIdentifier: controller.testIdentifier,
+              results: res,
+            ), 
             transition: Transition.fadeIn
           ); 
         },

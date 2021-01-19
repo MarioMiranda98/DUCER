@@ -1,11 +1,11 @@
-import 'package:ducer/src/pages/register_incidence/widgets/incidences_menu_widget.dart';
-import 'package:ducer/src/widgets/ducer_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:ducer/src/widgets/ducer_app_bar.dart';
 import 'package:ducer/src/widgets/ducer_header.dart';
 import 'package:ducer/src/controllers/register_incidence_controller.dart';
+import 'package:ducer/src/pages/register_incidence/widgets/incidences_menu_widget.dart';
+import 'package:ducer/src/widgets/ducer_text_field.dart';
 import 'package:ducer/src/widgets/ducer_button.dart';
 import 'package:ducer/src/widgets/ducer_select.dart';
 

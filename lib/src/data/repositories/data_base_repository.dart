@@ -3,7 +3,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'package:ducer/src/utils/data_base_tables.dart';
+import 'package:ducer/src/utils/constants/data_base_tables.dart';
 
 class DataBaseRepository {
   static Database _dataBase;

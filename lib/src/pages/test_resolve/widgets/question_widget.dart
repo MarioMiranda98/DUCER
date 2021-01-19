@@ -9,10 +9,12 @@ import 'package:ducer/src/controllers/question_controller.dart';
 class QuestionWidget extends StatelessWidget {
   final String question;
   final int controllerValueIndex;
+  final String childProblem;
 
   QuestionWidget({
     this.question,
     this.controllerValueIndex,
+    this.childProblem
   });
 
   @override
@@ -73,7 +75,8 @@ class QuestionWidget extends StatelessWidget {
             aux.removeAt(controllerValueIndex);
             aux.insert(controllerValueIndex, QuestionResponseModel(
               questionIndex: controllerValueIndex,
-              response: true
+              response: true,
+              childProblem: childProblem,
             ));
             testResolveController.selectedValues = aux;
           }
@@ -103,7 +106,8 @@ class QuestionWidget extends StatelessWidget {
             aux.removeAt(controllerValueIndex);
             aux.insert(controllerValueIndex, QuestionResponseModel(
               questionIndex: controllerValueIndex,
-              response: false
+              response: false,
+              childProblem: childProblem
             ));
             testResolveController.selectedValues = aux;
         },

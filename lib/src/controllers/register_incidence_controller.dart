@@ -7,19 +7,24 @@ import 'package:ducer/src/utils/validators.dart';
 import 'package:ducer/src/data/enums/incidences_enum.dart';
 import 'package:ducer/src/pages/home_page.dart';
 import 'package:ducer/src/models/children_model.dart';
+import 'package:ducer/src/data/services/incidences_service.dart';
+import 'package:ducer/src/data/services/secure_storage_service.dart';
+import 'package:ducer/src/models/registered_incidences_model.dart';
 
 class RegisterIncidenceController extends GetxController {
   ChildrenModel _child;
   List<CheckboxListTile> _checkBoxOptions = new List();
   List<IncidencesModel> _incidences = [
-    IncidencesModel(incidenceName: 'Se peleó en la escuela', isChecked: false, order: 0),
-    IncidencesModel(incidenceName: 'Me gritó', isChecked: false, order: 1),
-    IncidencesModel(incidenceName: 'Fue grocero', isChecked: false, order: 2),
-    IncidencesModel(incidenceName: 'Lloraba', isChecked: false, order: 3),
-    IncidencesModel(incidenceName: 'No hizo tarea', isChecked: false, order: 4),
-    IncidencesModel(incidenceName: 'Más callado de lo normal', isChecked: false, order: 5),
-    IncidencesModel(incidenceName: 'Se aisla', isChecked: false, order: 6),
-    IncidencesModel(incidenceName: 'Se tocaba', isChecked: false, order: 7),
+    IncidencesModel(incidenceName: 'Se siente observado', isChecked: false, order: 0),
+    IncidencesModel(incidenceName: 'Le cuesta comunicarse', isChecked: false, order: 1),
+    IncidencesModel(incidenceName: 'Se nota ansioso', isChecked: false, order: 2),
+    IncidencesModel(incidenceName: 'Se nota triste', isChecked: false, order: 3),
+    IncidencesModel(incidenceName: 'Señal física anormal', isChecked: false, order: 4),
+    IncidencesModel(incidenceName: 'Se aísla', isChecked: false, order: 5),
+    IncidencesModel(incidenceName: 'Poca atención', isChecked: false, order: 6),
+    IncidencesModel(incidenceName: 'Rabietas', isChecked: false, order: 7),
+    IncidencesModel(incidenceName: 'Agresión', isChecked: false, order: 8),
+    IncidencesModel(incidenceName: 'Problematico en su entorno', isChecked: false, order: 9),
   ];
 
   List<IncidencesModel> _selectedIncidences = new List();
@@ -75,10 +80,44 @@ class RegisterIncidenceController extends GetxController {
     update(['incidences-menu']);
   }
 
-  void registerIncidences(String text) {
+  void registerIncidences(String text) async {
     final validateIncidences = Validators.validateIncidence(text, _selectedIncidences);
 
     if(validateIncidences == null) {
+      final user = await SecureStorageService.instance.getUserEmail();
+      final incidencesService = IncidencesService.instance;
+      DateTime now = new DateTime.now();
+      DateTime date = new DateTime(now.year, now.month, now.day);
+
+      var res;
+      _selectedIncidences.forEach((item) async => {
+        res = await incidencesService.registerIncidence(
+          body: {
+            'email': user,
+            'name': _child.name,
+            'first_last_name': _child.firstLastName,
+            'second_last_name': _child.secondLastName,
+            'incidence_name': item.incidenceName,
+            'incidence_date': date.toString(),
+          }
+        )
+      });
+
+      res = await incidencesService.getAllIncidences(
+        args: [_child.name, _child.firstLastName, _child.secondLastName]
+      );
+
+      var rim = RegisteredIncidencesModel.fromJson(res[0]);
+
+      final resp = Helpers.getNewValues(_selectedIncidences, rim.toJson());
+      rim = RegisteredIncidencesModel.fromJson(resp);
+
+
+      await incidencesService.updateIncidence(
+        body: rim.toJson(),
+        args: [_child.name, _child.firstLastName, _child.secondLastName]
+      );
+
       Helpers.openSnackBar(IncidencesEnum.SUCCESS.title, IncidencesEnum.SUCCESS.message);
       Future.delayed(Duration(seconds: 3), () {
         Get.offAll(HomePage(), transition: Transition.cupertino);

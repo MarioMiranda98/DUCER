@@ -1,5 +1,3 @@
-import 'package:ducer/src/models/children_model.dart';
-import 'package:ducer/src/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,6 +6,10 @@ import 'package:ducer/src/utils/validators.dart';
 import 'package:ducer/src/data/enums/child_enums.dart';
 import 'package:ducer/src/data/services/child_service.dart';
 import 'package:ducer/src/data/services/secure_storage_service.dart';
+import 'package:ducer/src/data/services/incidences_service.dart';
+import 'package:ducer/src/models/children_model.dart';
+import 'package:ducer/src/models/registered_incidences_model.dart';
+import 'package:ducer/src/pages/home_page.dart';
 
 class RegisterChildController extends GetxController {
   bool _doesChildGoToPsychologist = false;
@@ -93,7 +95,18 @@ class RegisterChildController extends GetxController {
           body: values.toJson()
         );
 
-        if(res > 0) {
+        final rim = RegisteredIncidencesModel(
+            name : childForm['name'],
+            firstLastName : childForm['firstLastName'],
+            secondLastName : childForm['secondLastName']
+        );
+
+        final incidencesService = IncidencesService.instance;
+        final resp = await incidencesService.createIncidence(
+          body: rim.toJson(),
+        ); 
+
+        if(res > 0 && resp > 0) {
           Helpers.openSnackBar(ChildEnums.SUCCESS_REGISTER.title, ChildEnums.SUCCESS_REGISTER.message);
           Future.delayed((Duration(seconds: 3)), () {
             Get.off(HomePage(), transition: Transition.fade);
