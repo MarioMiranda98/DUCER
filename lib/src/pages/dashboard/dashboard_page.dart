@@ -96,7 +96,8 @@ class DashboardPage extends StatelessWidget {
               return DucerSelect();
             }
           );
-          if(selectedChild != null) controller.childName = selectedChild.name;
+          if(selectedChild != null && selectedChild.name.length > 0) controller.childName = '${selectedChild.name} ${selectedChild.firstLastName} ${selectedChild.secondLastName}';
+          else controller.childName = null;
         },
       ),
     );

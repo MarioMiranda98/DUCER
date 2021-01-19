@@ -1,8 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:get/get.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:flutter_rounded_date_picker/rounded_picker.dart';
+
+import 'package:ducer/src/utils/constants/tests_questions.dart';
+import 'package:ducer/src/models/incidences_model.dart';
+import 'package:ducer/src/utils/constants/tests_points.dart';
 
 class Helpers {
   static void setStatusBarColor(Color color) async {
@@ -51,5 +55,70 @@ class Helpers {
       backgroundColor: Colors.grey.withOpacity(0.4),
       animationDuration: Duration(seconds: 5)
     );
+  }
+
+  static Map<int, List<String>> getTestsQuestions(String identifier) {
+    switch (identifier) {
+      case 't1':
+        return kTestOne;
+      case 't2':
+        return kTestTwo;
+      case 't3':
+        return kTestThree;
+      case 't4':
+        return kTestFour;
+      case 't5':
+        return kTestFive;
+      case 't6':
+        return kTestSix;
+      default:
+        return {};
+    }
+  }
+
+  static Map<String, int> getTestsPoints(String identifier) {
+    switch (identifier) {
+      case 't1':
+        return kTestOnePoints;
+      case 't2':
+        return kTestTwoPoints;
+      case 't3':
+        return kTestThreePoints;
+      case 't4':
+        return kTestFourPoints;
+      case 't5':
+        return kTestFivePoints;
+      case 't6':
+        return kTestSixPoints;
+      default:
+        return {};
+    }
+  }
+
+  static Map<String, dynamic> getNewValues(List<IncidencesModel>incidenceName, Map<String, dynamic> map) {
+    for(int i = 0; i < incidenceName.length; i++) {
+      if(incidenceName[i].incidenceName == 'Se siente observado')
+        map['feeling_watched'] = map['feeling_watched'] + 1;
+      else if(incidenceName[i].incidenceName == 'Le cuesta comunicarse')
+        map['communiaction_trouble'] = map['communiaction_trouble'] + 1;
+      else if(incidenceName[i].incidenceName == 'Se nota ansioso')
+        map['anxious'] = map['anxious'] + 1;
+      else if(incidenceName[i].incidenceName == 'Se nota triste')
+        map['sad'] = map['sad'] + 1;
+      else if(incidenceName[i].incidenceName == 'Señal física anormal')
+        map['anormal_physyc_signal'] = map['anormal_physyc_signal'] + 1;
+      else if(incidenceName[i].incidenceName == 'Se aísla')
+        map['isolate'] = map['isolate'] + 1;
+      else if(incidenceName[i].incidenceName == 'Poca atención')
+        map['lack_attention'] = map['lack_attention'] + 1;
+      else if(incidenceName[i].incidenceName == 'Rabietas')
+        map['tantrums'] = map['tantrums'] + 1;
+      else if(incidenceName[i].incidenceName == 'Agresión')
+        map['aggressions'] = map['aggressions'] + 1;
+      else if(incidenceName[i].incidenceName == 'Problematico en su entorno')
+        map['problematic_enviroment'] = map['problematic_enviroment'] + 1;
+    }
+
+    return map;
   }
 }

@@ -9,13 +9,11 @@ class TestTileWidget extends StatelessWidget {
 
   final String identifier;
   final String titleTest;
-  final String status;
   final Widget destinationPage;
 
   TestTileWidget({
     this.identifier,
     this.titleTest = 'Default',
-    this.status = 'Default',
     @required this.destinationPage,
   });
 
@@ -38,24 +36,12 @@ class TestTileWidget extends StatelessWidget {
   Widget _createTestText() {
     return Container(
       padding: EdgeInsets.only(left: 10.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            this.titleTest,
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.grey
-            )
-          ),
-          Text(
-            this.status,
-            style: TextStyle(
-              fontSize: 16,
-              fontFamily: 'Baloo' 
-            )
-          ),
-        ],
+      child: Text(
+        this.titleTest,
+        style: TextStyle(
+          fontSize: 18,
+          color: Colors.grey
+        )
       ),
     );
   }

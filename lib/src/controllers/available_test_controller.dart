@@ -7,33 +7,33 @@ class AvailableTestController extends GetxController {
   String _childName;
   List<TestModel> _availableTests = [
     TestModel(
-      indentifier: 'hpd',
-      titleTest: 'Hiperactividad',
-      status: 'Realizado',
+      indentifier: 't1',
+      titleTest: 'Test 1',
       destinationPage: TestResolvePage(),
     ),    
     TestModel(
-      indentifier: 'aea',
-      titleTest: 'Autoestima',
-      status: 'Realizado',
+      indentifier: 't2',
+      titleTest: 'Test 2',
       destinationPage: TestResolvePage(),
     ),    
     TestModel(
-      indentifier: 'cth',
-      titleTest: '¿Confia tu hijo en ti?',
-      status: 'Sin realizar',
+      indentifier: 't3',
+      titleTest: 'Test 3',
       destinationPage: TestResolvePage(),
     ),    
     TestModel(
-      indentifier: 'ims',
-      titleTest: 'Inteligencia Múltiple',
-      status: 'Realizado',
+      indentifier: 't4',
+      titleTest: 'Test 4',
       destinationPage: TestResolvePage(),
     ),    
     TestModel(
-      indentifier: 'psd',
-      titleTest: 'Personalidad',
-      status: 'Sin Realizar',
+      indentifier: 't5',
+      titleTest: 'Test 5',
+      destinationPage: TestResolvePage(),
+    ),    
+    TestModel(
+      indentifier: 't6',
+      titleTest: 'Test 6',
       destinationPage: TestResolvePage(),
     ),    
   ];

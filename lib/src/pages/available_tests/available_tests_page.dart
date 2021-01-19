@@ -20,7 +20,7 @@ class AvailableTestsPage extends StatelessWidget {
           body: Column(
             children: <Widget> [
               _buildHeader(_),
-              _.childName != null ? _buildBody(_) : Container(),
+              _.childName != null && _.childName.isNotEmpty ? _buildBody(_) : Container(),
               _buildButton(_)
             ],
           )
@@ -44,13 +44,16 @@ class AvailableTestsPage extends StatelessWidget {
   Widget _buildBody(AvailableTestController controller) {
     return Container(
       width: Get.width * 0.9,
+      height: Get.height * 0.55,
       padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
       decoration: BoxDecoration(
         border: Border.all(),
         borderRadius: BorderRadius.circular(10)
       ),
-      child: Column(
-        children: _buildTestList(controller.availableTests),
+      child: SingleChildScrollView(
+        child: Column(
+          children: _buildTestList(controller.availableTests),
+        ),
       ),
     );
   }
@@ -67,7 +70,8 @@ class AvailableTestsPage extends StatelessWidget {
             }
           );
 
-          if(selectedChild != null) controller.childName = selectedChild.name;
+          if(selectedChild != null && selectedChild.name.length > 0) controller.childName = '${selectedChild.name} ${selectedChild.firstLastName} ${selectedChild.secondLastName}';
+          else controller.childName = null;
         },
         colorButton: Theme.of(Get.context).primaryColor,
         colorText: Colors.white,
@@ -86,7 +90,6 @@ class AvailableTestsPage extends StatelessWidget {
         TestTileWidget(
           identifier: item.indentifier,
           titleTest: item.titleTest,
-          status: item.status,
           destinationPage: item.destinationPage,
         )
       )
