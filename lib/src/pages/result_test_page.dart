@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:ducer/src/data/services/test_result_service.dart';
+import 'package:ducer/src/data/services/test_service.dart';
 import 'package:ducer/src/utils/helpers.dart';
 import 'package:ducer/src/pages/home_page.dart';
 import 'package:ducer/src/widgets/ducer_header.dart';
@@ -121,8 +121,8 @@ class ResultTestPage extends StatelessWidget {
       'result': Helpers.getResults(testIdentifier, results)
     };
 
-    final testResultService = TestResultService.instance;
-    final res = await testResultService.registerTest(
+    final testService = TestService.instance;
+    final res = await testService.registerTest(
       body: values,
     );
 

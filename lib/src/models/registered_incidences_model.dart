@@ -60,4 +60,19 @@ class RegisteredIncidencesModel {
     'aggressions': aggressions,
     'problematic_enviroment': problematicEnviroment,
   };
+
+  int getAllQuantityOfIncidences() {
+    return (
+      feelingWatched +
+      communiactionTrouble +
+      anxious +
+      sad +
+      anormalPhysycSignal +
+      isolate +
+      lackAttention +
+      tantrums +
+      aggressions +
+      problematicEnviroment 
+    );
+  }
 }
