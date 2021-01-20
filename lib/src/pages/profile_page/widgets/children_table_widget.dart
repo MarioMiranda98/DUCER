@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:ducer/src/utils/pdf_generator.dart';
 import 'package:ducer/src/widgets/ducer_button.dart';
 import 'package:ducer/src/models/children_model.dart';
 import 'package:ducer/src/controllers/children_table_controller.dart';
@@ -55,9 +56,13 @@ class ChildrenTableWidget extends StatelessWidget {
   Widget _buildButton(ChildrenModel item) {
     return Container(
       child: DucerButton(
-        action: () => print(
-          '${item.name} ${item.firstLastName} ${item.secondLastName}'
-        ),
+        action: () { 
+          print(
+            '${item.name} ${item.firstLastName} ${item.secondLastName}'
+          );
+
+          generatePdf(Get.context);
+        },
         colorButton: Theme.of(Get.context).primaryColor,
         colorText: Colors.white,
         fontSize: 12.0,

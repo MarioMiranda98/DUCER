@@ -1,5 +1,3 @@
-import 'package:ducer/src/controllers/dashboard_controller.dart';
-import 'package:ducer/src/widgets/ducer_select.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,6 +5,8 @@ import 'package:ducer/src/pages/dashboard/widgets/behavior_chart.dart';
 import 'package:ducer/src/widgets/ducer_app_bar.dart';
 import 'package:ducer/src/widgets/ducer_header.dart';
 import 'package:ducer/src/widgets/ducer_button.dart';
+import 'package:ducer/src/controllers/dashboard_controller.dart';
+import 'package:ducer/src/widgets/ducer_select.dart';
 import 'package:ducer/src/pages/dashboard/widgets/light_widget.dart';
 import 'package:ducer/src/pages/dashboard/widgets/table_incidences_widget.dart';
 

@@ -142,7 +142,7 @@ class ResultTestPage extends StatelessWidget {
       aux += 'probablemente tiene problemas de atención, ';
     
     if(results['ca'] > 0 && results['ca'] < testPoints['ca']) 
-      aux += 'hay una leve probabiidad de que tenga comportamientos agresivos';
+      aux += 'hay una leve probabilidad de que tenga comportamientos agresivos';
     else if(results['ca'] == testPoints['ca']) 
       aux += 'probablemente tiene comportamientos agresivos';
 
