@@ -65,7 +65,7 @@ class ResultTestPage extends StatelessWidget {
     return Container(
       height: Get.height * 0.3,
       child: Image.asset(
-        _getImage(),
+        Helpers.getImage(results),
       ),
     );
   }
@@ -75,7 +75,7 @@ class ResultTestPage extends StatelessWidget {
       padding: EdgeInsets.only(top: 10.0),
       width: Get.width * 0.9,
       child: Text(
-        _getResults(),
+        Helpers.getResults(testIdentifier, results),
         style: TextStyle(
           fontSize: 18
         ),
@@ -106,57 +106,6 @@ class ResultTestPage extends StatelessWidget {
     );
   }
 
-  String _getResults() {
-    final testPoints = Helpers.getTestsPoints(testIdentifier);
-    String aux = '';
-
-    if(results['er'] == 0 && results['ad'] == 0 && results['cc'] == 0 && 
-       results['as'] == 0 && results['pa'] == 0 && results['ca'] == 0) {
-      
-      return 'El niño se encuntra con sanidad y sin problema alguno. ¡Felicidades!';
-    }
-
-    if(results['er'] > 0 && results['er'] < testPoints['er']) 
-      aux += 'Hay una leve probabiidad de que sea Emocionalmente Reactivo, ';
-    else if(results['er'] == testPoints['er']) 
-      aux += 'Probablemente es Emocionalmente Reactivo, ';
-
-    if(results['ad'] > 0 && results['ad'] < testPoints['ad']) 
-      aux += 'hay una leve probabiidad de que sea Ansioso o Depresivo, ';
-    else if(results['ad'] == testPoints['ad']) 
-      aux += 'probablemente es Ansioso o Depresivo, ';
-
-    if(results['cc'] > 0 && results['cc'] < testPoints['cc']) 
-      aux += 'hay una leve probabiidad de que tenga problemas de comportamiento, ';
-    else if(results['cc'] == testPoints['cc']) 
-      aux += 'probablemente tiene problemas de comportamiento, ';
-
-    if(results['as'] > 0 && results['as'] < testPoints['as']) 
-      aux += 'hay una leve probabiidad de que se aisle, ';
-    else if(results['as'] == testPoints['as']) 
-      aux += 'probablemente se aisla, ';
-
-    if(results['pa'] > 0 && results['pa'] < testPoints['pa']) 
-      aux += 'hay una leve probabiidad de que tenga problemas de atención, ';
-    else if(results['pa'] == testPoints['pa']) 
-      aux += 'probablemente tiene problemas de atención, ';
-    
-    if(results['ca'] > 0 && results['ca'] < testPoints['ca']) 
-      aux += 'hay una leve probabilidad de que tenga comportamientos agresivos';
-    else if(results['ca'] == testPoints['ca']) 
-      aux += 'probablemente tiene comportamientos agresivos';
-
-    return aux;
-  }
-
-  String _getImage() {
-    if(results['er'] == 0 && results['ad'] == 0 && results['cc'] == 0 && 
-       results['as'] == 0 && results['pa'] == 0 && results['ca'] == 0) {
-      
-      return 'assets/images/feliz.png';
-    } else return 'assets/images/preocupado.png';
-  }
-
   void _makeRegister(String childName) async {
     final userEmail = await SecureStorageService.instance.getUserEmail();
     final time = DateTime.now();
@@ -169,7 +118,7 @@ class ResultTestPage extends StatelessWidget {
       'second_last_name': childName.split(' ')[2],
       'test_name': testName,
       'make_date': date,
-      'result': _getResults()
+      'result': Helpers.getResults(testIdentifier, results)
     };
 
     final testResultService = TestResultService.instance;
