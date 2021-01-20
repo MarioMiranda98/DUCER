@@ -72,6 +72,7 @@ final kIncidencesTable =
 
 final kTestsTable = 
   'CREATE TABLE Tests ('
+  ' id INT IDENTITY(1,1),'
   ' email VARCHAR(40) NOT NULL,'
   ' name VARCHAR(30) NOT NULL,'
   ' first_last_name VARCHAR(30) NOT NULL,'
@@ -91,4 +92,4 @@ final kTestsTable =
   ' CONSTRAINT fk_second_last_name FOREIGN KEY (second_last_name) REFERENCES Register_child(second_last_name)'
   ' ON DELETE CASCADE'
   ' ON UPDATE CASCADE,'
-  ' PRIMARY KEY(email, name, first_last_name, second_last_name))';
+  ' PRIMARY KEY(id, email, name, first_last_name, second_last_name))';
