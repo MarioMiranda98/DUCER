@@ -57,11 +57,7 @@ class ChildrenTableWidget extends StatelessWidget {
     return Container(
       child: DucerButton(
         action: () { 
-          print(
-            '${item.name} ${item.firstLastName} ${item.secondLastName}'
-          );
-
-          generatePdf(Get.context);
+          generatePdf(Get.context, item);
         },
         colorButton: Theme.of(Get.context).primaryColor,
         colorText: Colors.white,

@@ -72,7 +72,7 @@ final kIncidencesTable =
 
 final kTestsTable = 
   'CREATE TABLE Tests ('
-  ' id INT IDENTITY(1,1),'
+  ' id MEDIUMINT NOT NULL AUTO_INCREMENT'
   ' email VARCHAR(40) NOT NULL,'
   ' name VARCHAR(30) NOT NULL,'
   ' first_last_name VARCHAR(30) NOT NULL,'

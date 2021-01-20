@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:flutter_rounded_date_picker/rounded_picker.dart';
 
+import 'package:ducer/src/utils/constants/suggestions.dart';
 import 'package:ducer/src/utils/constants/tests_questions.dart';
 import 'package:ducer/src/models/incidences_model.dart';
 import 'package:ducer/src/utils/constants/tests_points.dart';
@@ -171,5 +172,12 @@ class Helpers {
       
       return 'assets/images/feliz.png';
     } else return 'assets/images/preocupado.png';
+  }
+
+  static String getSuggestion(int qoi) {
+    if(qoi < 16) return kGoodSuggestion;
+    if(qoi < 30) return kRegularSuggestion;
+    if(qoi >= 30) return kBadSuggestion;
+    return '';
   }
 }
