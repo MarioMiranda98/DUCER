@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:ducer/src/controllers/dashboard_controller.dart';
+
 class LightWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,6 +18,8 @@ class LightWidget extends StatelessWidget {
   }
 
   Widget _buildGreenLight() {
+    final dashboardController = Get.put(DashboardController());
+
     return Container(
       width: Get.width * 0.3,
       decoration: BoxDecoration(
@@ -41,10 +45,10 @@ class LightWidget extends StatelessWidget {
             height: 105.0,
             decoration: BoxDecoration(
               border: Border.all(
-                color: Colors.green
+                color: Colors.green,
               ),
               borderRadius: BorderRadius.circular(60),
-              color: Colors.green[300]
+              color: Colors.green[300].withOpacity(dashboardController.activateGreenLight ? 1 : 0)
             ),
           ),
           Text(
@@ -59,6 +63,8 @@ class LightWidget extends StatelessWidget {
   }
 
   Widget _buildYellowLight() {
+      final dashboardController = Get.put(DashboardController());
+
     return Container(
       width: Get.width * 0.3,
       decoration: BoxDecoration(
@@ -81,7 +87,7 @@ class LightWidget extends StatelessWidget {
                 color: Colors.yellow
               ),
               borderRadius: BorderRadius.circular(60),
-              color: Colors.yellow[300]
+              color: Colors.yellow[300].withOpacity(dashboardController.activateYellowLight ? 1 : 0)
             ),
           ),
           Text(
@@ -96,6 +102,8 @@ class LightWidget extends StatelessWidget {
   }
 
   Widget _buildRedLight() {
+    final dashboardController = Get.put(DashboardController());
+
     return Container(
       width: Get.width * 0.3,
       decoration: BoxDecoration(
@@ -122,7 +130,7 @@ class LightWidget extends StatelessWidget {
                 color: Colors.red
               ),
               borderRadius: BorderRadius.circular(60),
-              color: Colors.red[300]
+              color: Colors.red[300].withOpacity(dashboardController.activateRedLight ? 1 : 0)
             ),
           ),
           Text(
