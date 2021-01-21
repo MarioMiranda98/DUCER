@@ -14,16 +14,16 @@ class TableIncidencesWidget extends StatelessWidget {
           sortAscending: false,
           columns: [
             DataColumn(label: Text(
-              'Día (Eje x)',
+              'No.',
               style: TextStyle(
                 color: Colors.grey
               ),  
             )),
             DataColumn(label: Text(
-              'Incidencias (Eje y)',
+              'Nombre',
               style: TextStyle(
                 color: Colors.grey
-              ),
+              ),  
             )),
           ],
           rows: _createRows(_),
@@ -35,16 +35,13 @@ class TableIncidencesWidget extends StatelessWidget {
   List<DataRow> _createRows(TableIncidencesContoller controller) {
     List<DataRow> data = new List();
 
+    int i = 0;
     controller.behaviorList.forEach((item) => {
       data.add(DataRow(
         selected: false,
         cells: [
-          DataCell(Text(item.date)),
-          DataCell(Center(
-            child: Text(
-              '${item.quantityOfIncidence}'
-            )
-          ))
+          DataCell(Text('${++i}')),
+          DataCell(Text(item.order)),
         ]
       ))
     });

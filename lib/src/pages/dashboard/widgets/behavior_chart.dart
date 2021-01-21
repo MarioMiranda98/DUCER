@@ -8,13 +8,12 @@ class BehaviorChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    return GetBuilder<BehaviorChartController>(
-     init: BehaviorChartController(),
-     builder: (_) => charts.LineChart(
-       _.data,
-        defaultRenderer: new charts.LineRendererConfig(
-          includeArea: true, stacked: false),
-        animate: false,
-     ),
+    init: BehaviorChartController(),
+    builder: (_) => charts.BarChart(
+        _.data,
+        defaultRenderer: new charts.BarRendererConfig(),
+        animate: true,
+    ),
    );
   }
 }

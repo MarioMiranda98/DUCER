@@ -1,6 +1,6 @@
 class BehaviorModel {
   final int quantityOfIncidence;
-  final String date;
+  final String order;
 
-  BehaviorModel({this.quantityOfIncidence, this.date});
+  BehaviorModel({this.quantityOfIncidence, this.order});
 }

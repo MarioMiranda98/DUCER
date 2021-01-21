@@ -11,8 +11,6 @@ import 'package:ducer/src/pages/dashboard/widgets/light_widget.dart';
 import 'package:ducer/src/pages/dashboard/widgets/table_incidences_widget.dart';
 
 class DashboardPage extends StatelessWidget {
-  final text = 'Eu esse sint eiusmod eiusmod consectetur occaecat minim elit reprehenderit deserunt proident id.';
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,7 +27,7 @@ class DashboardPage extends StatelessWidget {
                   child: Stack(
                     children: <Widget> [ 
                       _.childName != null ?
-                        _buildBody()
+                      _buildBody(_)
                       : _buildSubTitleText('Selecciona Tu Niño'),
                       _buildButton(_),
                     ]
@@ -57,13 +55,13 @@ class DashboardPage extends StatelessWidget {
     );
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(DashboardController controller) {
     return ListView(
       shrinkWrap: true,
       children: <Widget>[
-        _buildBehaviorRegister(),
+        _buildBehaviorRegister(controller),
         _buildLights(),
-        _buildGeneralComments(),
+        _buildGeneralComments(controller),
         SizedBox(height: 75.0)
       ],
     );
@@ -103,13 +101,23 @@ class DashboardPage extends StatelessWidget {
     );
   }
 
-  Widget _buildBehaviorRegister() {
+  Widget _buildBehaviorRegister(DashboardController controller) {
     return Column(
       children: <Widget> [
         _buildSubTitleText('Registro de conductas'),
         Container(
           height: 300.0,
-          child: BehaviorChart()
+          child: controller.isChartReady ? 
+            BehaviorChart() : 
+            SizedBox(
+              child: Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    Theme.of(Get.context).primaryColor
+                  ),
+                ),
+              ),
+            )
         ),
         TableIncidencesWidget(),
       ]
@@ -132,7 +140,7 @@ class DashboardPage extends StatelessWidget {
     );
   }
 
-  Widget _buildGeneralComments() {
+  Widget _buildGeneralComments(DashboardController controller) {
     return Column(
       children: <Widget> [
         Container(
@@ -144,7 +152,7 @@ class DashboardPage extends StatelessWidget {
           child: Column(
             children: <Widget> [
              _buildSubTitleText('Observaciones'),
-              Text(text,
+              Text(controller.suggestion,
                 style: TextStyle(
                   fontSize: 16,
                 ),

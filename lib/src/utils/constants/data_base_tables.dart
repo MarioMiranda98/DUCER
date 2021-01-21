@@ -23,7 +23,7 @@ final kRegisterChildTable =
 
 final kRegisterIncidencesTable =  
   'CREATE TABLE Register_incidences ('
-  ' id INT IDENTITY(1,1),'
+  ' id INTEGER NULL,'
   ' email VARCHAR(40) NOT NULL,'
   ' name VARCHAR(30) NOT NULL,'
   ' first_last_name VARCHAR(30) NOT NULL,'
@@ -72,7 +72,7 @@ final kIncidencesTable =
 
 final kTestsTable = 
   'CREATE TABLE Tests ('
-  ' id MEDIUMINT NOT NULL AUTO_INCREMENT'
+  ' id INTEGER NULL,'
   ' email VARCHAR(40) NOT NULL,'
   ' name VARCHAR(30) NOT NULL,'
   ' first_last_name VARCHAR(30) NOT NULL,'
