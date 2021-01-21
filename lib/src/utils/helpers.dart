@@ -18,44 +18,39 @@ class Helpers {
 
   static Future<DateTime> buildDatePicker() async {
     return await showRoundedDatePicker(
-      context: Get.context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(DateTime.now().year - 10000),
-      lastDate: DateTime(DateTime.now().year + 10000),
-      borderRadius: 16,
-      theme: ThemeData(
-        primaryColor: Theme.of(Get.context).primaryColor,
-        accentColor: Theme.of(Get.context).primaryColor,
-        dialogBackgroundColor: Colors.grey[200],
-        accentTextTheme: TextTheme(
-          bodyText2: TextStyle(color: Theme.of(Get.context).primaryColor)
-        )
-      )
-    );
+        context: Get.context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(DateTime.now().year - 10000),
+        lastDate: DateTime(DateTime.now().year + 10000),
+        borderRadius: 16,
+        theme: ThemeData(
+            primaryColor: Theme.of(Get.context).primaryColor,
+            accentColor: Theme.of(Get.context).primaryColor,
+            dialogBackgroundColor: Colors.grey[200],
+            accentTextTheme: TextTheme(
+                bodyText2:
+                    TextStyle(color: Theme.of(Get.context).primaryColor))));
   }
 
   static void openSnackBar(String errorTitle, String errorBody) {
-    Get.snackbar(
-      '',
-      '',
-      titleText: Text(
-        errorTitle,
-        style: TextStyle(
-          fontFamily: 'Baloo',
-          color: Theme.of(Get.context).primaryColor,
-          fontWeight: FontWeight.w700,
+    Get.snackbar('', '',
+        titleText: Text(
+          errorTitle,
+          style: TextStyle(
+            fontFamily: 'Baloo',
+            color: Theme.of(Get.context).primaryColor,
+            fontWeight: FontWeight.w700,
+          ),
         ),
-      ),
-      messageText: Text(
-        errorBody,
-        style: TextStyle(
-          fontFamily: 'Baloo',
-          color: Colors.black,
+        messageText: Text(
+          errorBody,
+          style: TextStyle(
+            fontFamily: 'Baloo',
+            color: Colors.black,
+          ),
         ),
-      ),
-      backgroundColor: Colors.grey.withOpacity(0.4),
-      animationDuration: Duration(seconds: 5)
-    );
+        backgroundColor: Colors.grey.withOpacity(0.4),
+        animationDuration: Duration(seconds: 5));
   }
 
   static Map<int, List<String>> getTestsQuestions(String identifier) {
@@ -96,27 +91,28 @@ class Helpers {
     }
   }
 
-  static Map<String, dynamic> getNewValues(List<IncidencesModel>incidenceName, Map<String, dynamic> map) {
-    for(int i = 0; i < incidenceName.length; i++) {
-      if(incidenceName[i].incidenceName == 'Se siente observado')
+  static Map<String, dynamic> getNewValues(
+      List<IncidencesModel> incidenceName, Map<String, dynamic> map) {
+    for (int i = 0; i < incidenceName.length; i++) {
+      if (incidenceName[i].incidenceName == 'Se siente observado')
         map['feeling_watched'] = map['feeling_watched'] + 1;
-      else if(incidenceName[i].incidenceName == 'Le cuesta comunicarse')
+      else if (incidenceName[i].incidenceName == 'Le cuesta comunicarse')
         map['communiaction_trouble'] = map['communiaction_trouble'] + 1;
-      else if(incidenceName[i].incidenceName == 'Se nota ansioso')
+      else if (incidenceName[i].incidenceName == 'Se nota ansioso')
         map['anxious'] = map['anxious'] + 1;
-      else if(incidenceName[i].incidenceName == 'Se nota triste')
+      else if (incidenceName[i].incidenceName == 'Se nota triste')
         map['sad'] = map['sad'] + 1;
-      else if(incidenceName[i].incidenceName == 'Señal física anormal')
+      else if (incidenceName[i].incidenceName == 'Señal física anormal')
         map['anormal_physyc_signal'] = map['anormal_physyc_signal'] + 1;
-      else if(incidenceName[i].incidenceName == 'Se aísla')
+      else if (incidenceName[i].incidenceName == 'Se aísla')
         map['isolate'] = map['isolate'] + 1;
-      else if(incidenceName[i].incidenceName == 'Poca atención')
+      else if (incidenceName[i].incidenceName == 'Poca atención')
         map['lack_attention'] = map['lack_attention'] + 1;
-      else if(incidenceName[i].incidenceName == 'Rabietas')
+      else if (incidenceName[i].incidenceName == 'Rabietas')
         map['tantrums'] = map['tantrums'] + 1;
-      else if(incidenceName[i].incidenceName == 'Agresión')
+      else if (incidenceName[i].incidenceName == 'Agresión')
         map['aggressions'] = map['aggressions'] + 1;
-      else if(incidenceName[i].incidenceName == 'Problematico en su entorno')
+      else if (incidenceName[i].incidenceName == 'Problematico en su entorno')
         map['problematic_enviroment'] = map['problematic_enviroment'] + 1;
     }
 
@@ -127,57 +123,66 @@ class Helpers {
     final testPoints = Helpers.getTestsPoints(testIdentifier);
     String aux = '';
 
-    if(results['er'] == 0 && results['ad'] == 0 && results['cc'] == 0 && 
-       results['as'] == 0 && results['pa'] == 0 && results['ca'] == 0) {
-      
-      return 'El niño se encuntra con sanidad y sin problema alguno. ¡Felicidades!';
+    if (results['er'] == 0 &&
+        results['ad'] == 0 &&
+        results['cc'] == 0 &&
+        results['as'] == 0 &&
+        results['pa'] == 0 &&
+        results['ca'] == 0) {
+      return 'Parece que el niño se encuentra bien en su salud mental, ¡Felicidades!,'
+          ' pero no deje de seguir observando.';
     }
 
-    if(results['er'] > 0 && results['er'] < testPoints['er']) 
-      aux += 'Hay una leve probabiidad de que sea Emocionalmente Reactivo, ';
-    else if(results['er'] == testPoints['er']) 
-      aux += 'Probablemente es Emocionalmente Reactivo, ';
+    if (results['er'] > 0 && results['er'] < testPoints['er'])
+      aux += 'Hay una leve probabidad de que sea emocionalmente reactivo, ';
+    else if (results['er'] == testPoints['er'])
+      aux += 'Probablemente es emocionalmente reactivo, ';
 
-    if(results['ad'] > 0 && results['ad'] < testPoints['ad']) 
-      aux += 'hay una leve probabiidad de que sea Ansioso o Depresivo, ';
-    else if(results['ad'] == testPoints['ad']) 
-      aux += 'probablemente es Ansioso o Depresivo, ';
+    if (results['ad'] > 0 && results['ad'] < testPoints['ad'])
+      aux +=
+          'existe una ligera posibilidad de que tenga ansiedad o depresión, ';
+    else if (results['ad'] == testPoints['ad'])
+      aux += 'posiblemente es ansioso o depresivo, ';
 
-    if(results['cc'] > 0 && results['cc'] < testPoints['cc']) 
-      aux += 'hay una leve probabiidad de que tenga problemas de comportamiento, ';
-    else if(results['cc'] == testPoints['cc']) 
-      aux += 'probablemente tiene problemas de comportamiento, ';
+    if (results['cc'] > 0 && results['cc'] < testPoints['cc'])
+      aux += 'es probable que no controle su comportamiento, ';
+    else if (results['cc'] == testPoints['cc'])
+      aux += 'puede que no controle su comportamiento, ';
 
-    if(results['as'] > 0 && results['as'] < testPoints['as']) 
-      aux += 'hay una leve probabiidad de que se aisle, ';
-    else if(results['as'] == testPoints['as']) 
-      aux += 'probablemente se aisla, ';
+    if (results['as'] > 0 && results['as'] < testPoints['as'])
+      aux += 'pocas veces se aisla, ';
+    else if (results['as'] == testPoints['as'])
+      aux += 'se aisla constantemente, ';
 
-    if(results['pa'] > 0 && results['pa'] < testPoints['pa']) 
-      aux += 'hay una leve probabiidad de que tenga problemas de atención, ';
-    else if(results['pa'] == testPoints['pa']) 
-      aux += 'probablemente tiene problemas de atención, ';
-    
-    if(results['ca'] > 0 && results['ca'] < testPoints['ca']) 
-      aux += 'hay una leve probabilidad de que tenga comportamientos agresivos';
-    else if(results['ca'] == testPoints['ca']) 
-      aux += 'probablemente tiene comportamientos agresivos';
+    if (results['pa'] > 0 && results['pa'] < testPoints['pa'])
+      aux += 'aparentemente tiene pequeños problemas de atención, ';
+    else if (results['pa'] == testPoints['pa'])
+      aux += 'potencialmente tiene problemas de respecto a la atención, ';
+
+    if (results['ca'] > 0 && results['ca'] < testPoints['ca'])
+      aux += 'en ocasiones tiene comportamientos agresivos';
+    else if (results['ca'] == testPoints['ca'])
+      aux += 'tiene comportamientos agresivos';
 
     return aux;
   }
 
   static String getImage(Map<String, int> results) {
-    if(results['er'] == 0 && results['ad'] == 0 && results['cc'] == 0 && 
-       results['as'] == 0 && results['pa'] == 0 && results['ca'] == 0) {
-      
+    if (results['er'] == 0 &&
+        results['ad'] == 0 &&
+        results['cc'] == 0 &&
+        results['as'] == 0 &&
+        results['pa'] == 0 &&
+        results['ca'] == 0) {
       return 'assets/images/feliz.png';
-    } else return 'assets/images/preocupado.png';
+    } else
+      return 'assets/images/preocupado.png';
   }
 
   static String getSuggestion(int qoi) {
-    if(qoi < 16) return kGoodSuggestion;
-    if(qoi < 30) return kRegularSuggestion;
-    if(qoi >= 30) return kBadSuggestion;
+    if (qoi < 16) return kGoodSuggestion;
+    if (qoi < 30) return kRegularSuggestion;
+    if (qoi >= 30) return kBadSuggestion;
     return '';
   }
 }

@@ -1,10 +1,12 @@
-final kGoodSuggestion = 
-  'El niño presenta buenas conductas por lo tanto debe mantenerse así como lo cuida';
+final kGoodSuggestion =
+    'El infante presenta un comportamiento normal por lo tanto se debe tratar de mantener así,'
+    'pero estar pendiente de algun comportamiento fuera de lo común y registrarlo.';
 
-final kRegularSuggestion = 
-  'El niño presenta algunas conductas indeseadas, por lo cual se recomienda prestarle mayor'
-  ' atención y acudir ocasionalmente con un experto';
+final kRegularSuggestion =
+    'El infante presenta algunas conductas que crean alerta, por lo cual se recomienda acudir con'
+    'un especialista para prevenir cualquier situación y tomar en cuenta las observaciones de DUCER.';
 
-final kBadSuggestion = 
-  'El niño presenta demasiadas conductas indeseadas, por lo cual se recomienda acudir con un'
-  ' experto para encontrar la razón de los malestares del niño y corregirlos cuanto antes';
+final kBadSuggestion =
+    'El niño presenta demasiadas conductas alarmantes, por lo cual se recomienda acudir con un'
+    'especialista lo antes posible para el tratamiento de los posibles transtornos que puede llegar'
+    ' llegar a presentar, nuevamente, se recomienda acudir a la brevedad.';
